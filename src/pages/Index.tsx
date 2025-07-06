@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Star, MapPin, Clock, Phone, Globe, Users, TrendingUp, Shield } from 'lucide-react';
+import { Star, MapPin, Clock, Phone, Globe, Users, TrendingUp, Shield, Play } from 'lucide-react';
 
 const Index = () => {
   return (
@@ -31,8 +30,8 @@ const Index = () => {
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
+          <div className="grid lg:grid-cols-5 gap-12 items-center">
+            <div className="lg:col-span-2">
               <h1 className="text-5xl font-normal text-gray-900 mb-6 leading-tight">
                 Stand out on<br />
                 Ulo with a free<br />
@@ -45,47 +44,18 @@ const Index = () => {
                 Get started
               </Button>
             </div>
-            <div className="relative">
-              <Card className="bg-white shadow-lg border-0 shadow-gray-200/50">
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-4 mb-4">
-                    <div className="w-16 h-16 bg-blue-600 rounded-lg flex items-center justify-center">
-                      <div className="w-8 h-8 bg-white rounded"></div>
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="font-medium text-gray-900">Rosa's Italian Restaurant</h3>
-                      <div className="flex items-center mt-1">
-                        <div className="flex items-center">
-                          {[1,2,3,4,5].map((star) => (
-                            <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                          ))}
-                        </div>
-                        <span className="text-sm text-gray-600 ml-2">4.8 (127)</span>
-                      </div>
-                      <p className="text-sm text-gray-600 mt-1">Italian restaurant • $$</p>
-                    </div>
+            <div className="lg:col-span-3">
+              <div className="relative bg-gray-900 rounded-lg overflow-hidden aspect-video">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow cursor-pointer group">
+                    <Play className="w-8 h-8 text-gray-900 ml-1 group-hover:scale-110 transition-transform" fill="currentColor" />
                   </div>
-                  <div className="space-y-2 mb-4">
-                    <div className="flex items-center text-sm text-gray-600">
-                      <MapPin className="w-4 h-4 mr-2" />
-                      123 Main Street, Downtown
-                    </div>
-                    <div className="flex items-center text-sm text-gray-600">
-                      <Clock className="w-4 h-4 mr-2" />
-                      Open until 10:00 PM
-                    </div>
-                    <div className="flex items-center text-sm text-gray-600">
-                      <Phone className="w-4 h-4 mr-2" />
-                      (555) 123-4567
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-3 gap-2">
-                    {[1,2,3,4,5,6].map((img) => (
-                      <div key={img} className="aspect-square bg-gray-200 rounded"></div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+                </div>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="text-sm opacity-80">See how Ulo Business Profile works</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
