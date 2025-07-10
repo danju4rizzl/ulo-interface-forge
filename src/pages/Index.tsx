@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Star, MapPin, Clock, Phone, Globe, Users, TrendingUp, Shield, Play } from 'lucide-react';
+import { Star, MapPin, Clock, Phone, Globe, Users, TrendingUp, Shield, Play, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 const Index = () => {
-  const slides = [
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  const heroSlides = [
     {
       title: "Stand out on Ulo with a free Business Profile",
       description: "Turn people who find you on Ulo Search and Maps into new customers with a free Business Profile for your storefront or service area.",
@@ -28,6 +30,41 @@ const Index = () => {
       videoUrl: "#video4"
     }
   ];
+
+  const businessSlides = [
+    {
+      id: 0,
+      title: "Get discovered",
+      description: "Your Business Profile lets you connect with customers across Ulo Search and Maps. When people search for businesses like yours, make sure they find your business.",
+      videoUrl: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7"
+    },
+    {
+      id: 1,
+      title: "Build trust",
+      description: "Customers are more likely to choose a business with photos, reviews, and up-to-date information. Your Business Profile helps you put your best foot forward.",
+      videoUrl: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
+    },
+    {
+      id: 2,
+      title: "Engage customers",
+      description: "Keep customers engaged with regular updates, respond to reviews, and showcase what makes your business special with photos and posts.",
+      videoUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
+    },
+    {
+      id: 3,
+      title: "Grow your business",
+      description: "Use insights and analytics to understand how customers find and interact with your business, helping you make data-driven decisions.",
+      videoUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5"
+    }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % businessSlides.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -56,7 +93,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <Carousel className="w-full">
             <CarouselContent>
-              {slides.map((slide, index) => (
+              {heroSlides.map((slide, index) => (
                 <CarouselItem key={index}>
                   <div className="grid lg:grid-cols-5 gap-12 items-center">
                     <div className="lg:col-span-2">
@@ -132,61 +169,93 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Business Showcase */}
+      {/* Business Showcase - Updated to Horizontal Slider */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-normal text-gray-900 mb-4">Turn a Ulo search into a visit to your business</h2>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-            <div>
-              <h3 className="text-2xl font-medium text-gray-900 mb-4">Get discovered</h3>
-              <p className="text-lg text-gray-600 mb-6">
-                Your Business Profile lets you connect with customers across Ulo Search and Maps. When people search for businesses like yours, make sure they find your business.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              {[1,2,3,4].map((item) => (
-                <div key={item} className="aspect-square bg-gray-200 rounded-lg"></div>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-            <div className="lg:order-2">
-              <h3 className="text-2xl font-medium text-gray-900 mb-4">Build trust</h3>
-              <p className="text-lg text-gray-600 mb-6">
-                Customers are more likely to choose a business with photos, reviews, and up-to-date information. Your Business Profile helps you put your best foot forward.
-              </p>
-            </div>
-            <div className="lg:order-1">
-              <Card className="bg-white shadow-lg border-0 shadow-gray-200/50">
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    <div className="text-4xl font-light text-gray-900 mr-2">4.5</div>
-                    <div>
-                      <div className="flex items-center mb-1">
-                        {[1,2,3,4,5].map((star) => (
-                          <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                        ))}
-                      </div>
-                      <p className="text-sm text-gray-600">Based on 127 reviews</p>
-                    </div>
-                  </div>
-                  <div className="space-y-3">
-                    {[5,4,3,2,1].map((rating) => (
-                      <div key={rating} className="flex items-center">
-                        <span className="text-sm text-gray-600 w-4">{rating}</span>
-                        <div className="flex-1 mx-3 bg-gray-200 rounded-full h-2">
-                          <div className="bg-yellow-400 h-2 rounded-full" style={{width: `${rating * 20}%`}}></div>
-                        </div>
-                        <span className="text-sm text-gray-600">{Math.floor(Math.random() * 50) + 10}</span>
-                      </div>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left side - Sliding text content */}
+            <div className="relative h-80 overflow-hidden">
+              {businessSlides.map((slide, index) => (
+                <div
+                  key={slide.id}
+                  className={`absolute inset-0 transition-all duration-700 ease-out ${
+                    index === activeSlide 
+                      ? 'transform translate-y-0 opacity-100' 
+                      : index < activeSlide 
+                        ? 'transform -translate-y-full opacity-0'
+                        : 'transform translate-y-full opacity-0'
+                  }`}
+                >
+                  <h3 className="text-2xl font-medium text-gray-900 mb-4">{slide.title}</h3>
+                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                    {slide.description}
+                  </p>
+                  <div className="flex space-x-2 mb-6">
+                    {businessSlides.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setActiveSlide(i)}
+                        className={`w-3 h-3 rounded-full transition-colors ${
+                          i === activeSlide ? 'bg-blue-600' : 'bg-gray-300'
+                        }`}
+                      />
                     ))}
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              ))}
+              
+              {/* Navigation arrows */}
+              <div className="absolute bottom-4 left-0 flex space-x-2">
+                <button
+                  onClick={() => setActiveSlide((prev) => (prev - 1 + businessSlides.length) % businessSlides.length)}
+                  className="p-2 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow"
+                >
+                  <ChevronLeft className="w-5 h-5 text-gray-600" />
+                </button>
+                <button
+                  onClick={() => setActiveSlide((prev) => (prev + 1) % businessSlides.length)}
+                  className="p-2 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow"
+                >
+                  <ChevronRight className="w-5 h-5 text-gray-600" />
+                </button>
+              </div>
+            </div>
+
+            {/* Right side - Video grid */}
+            <div className="grid grid-cols-2 gap-4">
+              {businessSlides.map((slide, index) => (
+                <div
+                  key={slide.id}
+                  className={`relative aspect-square rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
+                    index === activeSlide 
+                      ? 'ring-4 ring-blue-600 scale-105 shadow-xl' 
+                      : 'hover:scale-102 shadow-md'
+                  }`}
+                  onClick={() => setActiveSlide(index)}
+                >
+                  <img
+                    src={slide.videoUrl}
+                    alt={`${slide.title} preview`}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                    <div className={`w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg transition-all ${
+                      index === activeSlide ? 'scale-110' : 'scale-100'
+                    }`}>
+                      <Play className="w-6 h-6 text-gray-900 ml-0.5" fill="currentColor" />
+                    </div>
+                  </div>
+                  {index === activeSlide && (
+                    <div className="absolute top-2 left-2">
+                      <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
