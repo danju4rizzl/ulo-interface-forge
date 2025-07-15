@@ -52,9 +52,26 @@ To modify the hero section:
 2. Make your changes to the component
 3. If you need to change the content, update the `heroContent` object in `src/data/index.ts`
 
+## Recent Updates
+
+### BusinessShowcaseSection Enhancement
+- **Changed from grid layout to single video display**: Now shows only one video at a time for the active slide
+- **Added smooth fade transition**: Videos fade in/out when switching between slides with a 500ms duration
+- **Improved user experience**: Added slide indicators below the video for easy navigation
+- **Enhanced visual elements**: Added LIVE indicator and video title overlay
+- **Reduced auto-advance timing**: Changed from 10 seconds to 3 seconds for better engagement
+
+### Video Controls Enhancement (HeroSection)
+- **Full-screen support**: Users can enter full-screen mode by double-clicking the video or using native video controls
+- **Escape key support**: Users can exit full-screen mode by pressing the Escape key or double-clicking again
+- **Improved video controls**: Native video controls are now properly accessible without overlay interference
+- **Better state management**: Video play/pause state is properly synchronized with user interactions
+
 ## Future Improvements
 
 1. Consider further breaking down larger components (like BusinessShowcaseSection)
 2. Add unit tests for each component
 3. Create storybook stories for visual testing
 4. Consider adding more props to components for greater flexibility
+5. Add video preloading for smoother transitions in BusinessShowcaseSection
+6. Consider adding keyboard navigation support for slide indicators

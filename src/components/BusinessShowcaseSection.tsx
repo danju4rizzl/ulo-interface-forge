@@ -8,14 +8,32 @@ interface BusinessShowcaseSectionProps {
 
 const BusinessShowcaseSection: React.FC<BusinessShowcaseSectionProps> = ({ businessSlides }) => {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false)
+
+  // Handle slide change with animation
+  const handleSlideChange = (newSlideIndex: number) => {
+    if (newSlideIndex === activeSlide) return
+
+    setIsTransitioning(true)
+
+    // Small delay to trigger fade out, then change slide
+    setTimeout(() => {
+      setActiveSlide(newSlideIndex)
+      // Reset transition state after fade in completes
+      setTimeout(() => {
+        setIsTransitioning(false)
+      }, 300)
+    }, 150)
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % businessSlides.length)
-    }, 3000)
+      const nextSlide = (activeSlide + 1) % businessSlides.length
+      handleSlideChange(nextSlide)
+    }, 10000)
 
-    return () => clearInterval(interval);
-  }, [activeSlide, businessSlides.length]);
+    return () => clearInterval(interval)
+  }, [activeSlide, businessSlides.length])
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
@@ -37,14 +55,14 @@ const BusinessShowcaseSection: React.FC<BusinessShowcaseSectionProps> = ({ busin
                     ? 'opacity-100'
                     : 'opacity-60 hover:opacity-80'
                 }`}
-                onClick={() => setActiveSlide(index)}
+                onClick={() => handleSlideChange(index)}
               >
                 {/* Line timer */}
                 <div className="flex-shrink-0 w-1 h-16 bg-gray-300 rounded-full overflow-hidden">
                   <div
                     className={`w-full bg-primary transition-all ease-linear ${
                       index === activeSlide
-                        ? 'h-full duration-[10000ms]'
+                        ? 'h-full duration-[3000ms]'
                         : 'h-0 duration-300'
                     }`}
                     style={{
@@ -72,42 +90,40 @@ const BusinessShowcaseSection: React.FC<BusinessShowcaseSectionProps> = ({ busin
             ))}
           </div>
 
-          {/* Right side - Video grid */}
-          <div className="grid grid-cols-2 gap-4">
-            {businessSlides.map((slide, index) => (
+          {/* Right side - Single Video Display */}
+          <div className="relative">
+            <div className="relative aspect-video rounded-lg">
+              {/* Video container with fade transition */}
               <div
-                key={slide.id}
-                className={`relative aspect-square rounded-lg overflow-hidden cursor-pointer transition-all duration-300 ${
-                  index === activeSlide
-                    ? 'ring-4 ring-blue-600 scale-105 shadow-xl'
-                    : 'hover:scale-102 shadow-md'
+                key={activeSlide}
+                className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
+                  isTransitioning ? 'opacity-0' : 'opacity-100'
                 }`}
-                onClick={() => setActiveSlide(index)}
               >
-                <img
-                  src={slide.videoUrl}
-                  alt={`${slide.title} preview`}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
-                  <div
-                    className={`w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg transition-all ${
-                      index === activeSlide ? 'scale-110' : 'scale-100'
-                    }`}
-                  >
-                    <Play
-                      className="w-6 h-6 text-gray-900 ml-0.5"
-                      fill="currentColor"
-                    />
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  controlsList="nodownload"
+                  className="h-[600px] w-[500px]"
+                >
+                  <source
+                    src={businessSlides[activeSlide].videoUrl}
+                    type="video/mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+
+                {/* Video title overlay */}
+                {/* <div className="absolute bottom-4 left-4 right-4">
+                  <div className="bg-black bg-opacity-50 px-4 py-2 rounded">
+                    <h4 className="text-white font-medium text-lg">
+                      {businessSlides[activeSlide].title}
+                    </h4>
                   </div>
-                </div>
-                {index === activeSlide && (
-                  <div className="absolute top-2 left-2">
-                    <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
-                  </div>
-                )}
+                </div> */}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
