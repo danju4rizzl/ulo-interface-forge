@@ -149,7 +149,7 @@ const BusinessShowcaseSection: React.FC<BusinessShowcaseSectionProps> = ({
                   autoPlay
                   muted
                   controlsList="nodownload"
-                  className="h-[600px] w-[500px] -mt-14"
+                  className="h-[600px] w-[500px] -mt-12"
                   onLoadedMetadata={handleVideoLoadedMetadata}
                   onEnded={handleVideoEnded}
                   key={activeSlide} // Force re-render when slide changes
