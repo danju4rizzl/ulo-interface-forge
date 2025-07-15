@@ -10,45 +10,45 @@ const ScrollDotsSection: React.FC = () => {
 
   useEffect(() => {
     if (scrollDotsRef.current && blueDotRef.current) {
-      const scrollSection = scrollDotsRef.current;
-      const blueDot = blueDotRef.current;
-      
-      gsap.set(blueDot, { y: 0 });
-      
+      const scrollSection = scrollDotsRef.current
+      const blueDot = blueDotRef.current
+
+      gsap.set(blueDot, { y: 0 })
+
       ScrollTrigger.create({
         trigger: scrollSection,
-        start: "top center",
-        end: "bottom center",
+        start: 'top center',
+        end: 'bottom center',
         scrub: 1,
         onUpdate: (self) => {
-          const progress = self.progress;
-          const maxY = 280; // Total distance the dot can travel (7 gray dots * 40px spacing)
+          const progress = self.progress
+          const maxY = 140 // Total distance the dot can travel (7 gray dots * 40px spacing)
           gsap.to(blueDot, {
             y: progress * maxY,
             duration: 0.1,
-            ease: "none"
-          });
+            ease: 'none'
+          })
         }
-      });
+      })
     }
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
-  }, []);
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+    }
+  }, [])
 
   return (
     <div
       ref={scrollDotsRef}
-      className="min-h-screen bg-gray-50 flex items-center justify-center py-20"
+      className="min-h-52 bg-gray-50 flex items-center justify-center py-20"
     >
       <div className="relative">
         {/* Gray dots path */}
         <div className="flex flex-col items-center space-y-10">
-          {Array.from({ length: 8 }).map((_, index) => (
+          {Array.from({ length: 4 }).map((_, index) => (
             <div
               key={index}
-              className="w-3 h-3 bg-gray-400 rounded-full opacity-60"
+              className="w-2 h-2 bg-gray-400 rounded-full opacity-60"
             />
           ))}
         </div>
@@ -56,7 +56,7 @@ const ScrollDotsSection: React.FC = () => {
         {/* Blue moving dot */}
         <div
           ref={blueDotRef}
-          className="absolute top-0 left-1/2 transform -translate-x-1/2 w-5 h-5 bg-blue-600 rounded-full shadow-lg"
+          className="absolute top-0 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full shadow-lg z-50"
           style={{ transformOrigin: 'center' }}
         />
 
@@ -66,7 +66,7 @@ const ScrollDotsSection: React.FC = () => {
         </div>
       </div>
     </div>
-  );
+  )
 };
 
 export default ScrollDotsSection;

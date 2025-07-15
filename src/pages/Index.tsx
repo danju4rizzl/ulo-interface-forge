@@ -21,6 +21,8 @@ const Index = () => {
 
       <BusinessShowcaseSection businessSlides={businessSlides} />
 
+      <ScrollDotsSection />
+
       <AnalyticsSection />
 
       <CTASection />
@@ -28,8 +30,6 @@ const Index = () => {
       <FAQSection />
 
       <Footer />
-
-      <ScrollDotsSection />
     </div>
   )
 }

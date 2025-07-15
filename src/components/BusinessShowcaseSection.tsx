@@ -11,8 +11,8 @@ const BusinessShowcaseSection: React.FC<BusinessShowcaseSectionProps> = ({ busin
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % businessSlides.length);
-    }, 10000);
+      setActiveSlide((prev) => (prev + 1) % businessSlides.length)
+    }, 3000)
 
     return () => clearInterval(interval);
   }, [activeSlide, businessSlides.length]);
@@ -42,7 +42,7 @@ const BusinessShowcaseSection: React.FC<BusinessShowcaseSectionProps> = ({ busin
                 {/* Line timer */}
                 <div className="flex-shrink-0 w-1 h-16 bg-gray-300 rounded-full overflow-hidden">
                   <div
-                    className={`w-full bg-blue-600 transition-all ease-linear ${
+                    className={`w-full bg-primary transition-all ease-linear ${
                       index === activeSlide
                         ? 'h-full duration-[10000ms]'
                         : 'h-0 duration-300'
@@ -57,9 +57,7 @@ const BusinessShowcaseSection: React.FC<BusinessShowcaseSectionProps> = ({ busin
                 <div className="flex-1">
                   <h3
                     className={`text-2xl font-medium text-gray-900 mb-2 transition-all duration-300 ${
-                      index === activeSlide
-                        ? 'text-blue-600'
-                        : 'text-gray-900'
+                      index === activeSlide ? 'text-blue-600' : 'text-gray-900'
                     }`}
                   >
                     {slide.title}
@@ -114,7 +112,7 @@ const BusinessShowcaseSection: React.FC<BusinessShowcaseSectionProps> = ({ busin
         </div>
       </div>
     </section>
-  );
+  )
 };
 
 export default BusinessShowcaseSection;
