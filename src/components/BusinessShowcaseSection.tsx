@@ -30,7 +30,7 @@ const BusinessShowcaseSection: React.FC<BusinessShowcaseSectionProps> = ({ busin
     const interval = setInterval(() => {
       const nextSlide = (activeSlide + 1) % businessSlides.length
       handleSlideChange(nextSlide)
-    }, 100000)
+    }, 10000)
 
     return () => clearInterval(interval)
   }, [activeSlide, businessSlides.length])
