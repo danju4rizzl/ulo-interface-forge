@@ -1,12 +1,12 @@
-import React, { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useRef, useEffect } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
 const ScrollDotsSection: React.FC = () => {
-  const scrollDotsRef = useRef<HTMLDivElement>(null);
-  const blueDotRef = useRef<HTMLDivElement>(null);
+  const scrollDotsRef = useRef<HTMLDivElement>(null)
+  const blueDotRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (scrollDotsRef.current && blueDotRef.current) {
@@ -40,7 +40,7 @@ const ScrollDotsSection: React.FC = () => {
   return (
     <div
       ref={scrollDotsRef}
-      className="min-h-52 bg-gray-50 flex items-center justify-center py-20"
+      className="min-h-52 mt-44 flex items-center justify-center py-20"
     >
       <div className="relative">
         {/* Gray dots path */}
@@ -67,6 +67,6 @@ const ScrollDotsSection: React.FC = () => {
       </div>
     </div>
   )
-};
+}
 
-export default ScrollDotsSection;
+export default ScrollDotsSection
