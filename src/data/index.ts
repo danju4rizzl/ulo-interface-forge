@@ -1,10 +1,11 @@
 import { HeroContent, BusinessSlide } from '@/types';
 
 export const heroContent: HeroContent = {
-  title: "Stand out on Ulo with a free Business Profile",
-  description: "Turn people who find you on Ulo Search and Maps into new customers with a free Business Profile for your storefront or service area.",
-  videoUrl: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7"
-};
+  title: 'Stand out on Ulo with a free Business Profile',
+  description:
+    'Turn people who find you on Ulo Search and Maps into new customers with a free Business Profile for your storefront or service area.',
+  videoUrl: '/ulo-video.mp4'
+}
 
 export const businessSlides: BusinessSlide[] = [
   {
