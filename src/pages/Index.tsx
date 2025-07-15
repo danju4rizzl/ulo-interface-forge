@@ -5,37 +5,21 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Star, MapPin, Clock, Phone, Globe, Users, TrendingUp, Shield, Play, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Index = () => {
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
   const scrollDotsRef = useRef(null);
   const blueDotRef = useRef(null);
+  const videoRef = useRef(null);
 
-  const heroSlides = [
-    {
-      title: "Stand out on Ulo with a free Business Profile",
-      description: "Turn people who find you on Ulo Search and Maps into new customers with a free Business Profile for your storefront or service area.",
-      videoUrl: "#video1"
-    },
-    {
-      title: "Connect with customers across Ulo",
-      description: "Help people discover your business and engage with your customers through Ulo Search and Maps integration.",
-      videoUrl: "#video2"
-    },
-    {
-      title: "Share what makes you special",
-      description: "Upload photos, respond to reviews, post updates, and showcase your business to potential customers.",
-      videoUrl: "#video3"
-    },
-    {
-      title: "Turn viewers into customers",
-      description: "Get the insights you need to keep customers coming back and grow your business with data-driven decisions.",
-      videoUrl: "#video4"
-    }
-  ];
+  const heroContent = {
+    title: "Stand out on Ulo with a free Business Profile",
+    description: "Turn people who find you on Ulo Search and Maps into new customers with a free Business Profile for your storefront or service area.",
+    videoUrl: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7"
+  };
 
   const businessSlides = [
     {
@@ -63,6 +47,19 @@ const Index = () => {
       videoUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5"
     }
   ];
+
+  const handleVideoToggle = () => {
+    if (videoRef.current) {
+      if (isVideoPlaying) {
+        videoRef.current.pause();
+        videoRef.current.muted = true;
+      } else {
+        videoRef.current.play();
+        videoRef.current.muted = false;
+      }
+      setIsVideoPlaying(!isVideoPlaying);
+    }
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -123,55 +120,48 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Hero Section with Carousel */}
+      {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <Carousel className="w-full">
-            <CarouselContent>
-              {heroSlides.map((slide, index) => (
-                <CarouselItem key={index}>
-                  <div className="grid lg:grid-cols-5 gap-12 items-center">
-                    <div className="lg:col-span-2">
-                      <h1 className="text-5xl font-normal text-gray-900 mb-6 leading-tight animate-fade-in">
-                        {slide.title}
-                      </h1>
-                      <p className="text-lg text-gray-600 mb-8 leading-relaxed animate-fade-in">
-                        {slide.description}
-                      </p>
-                      <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-base animate-fade-in">
-                        Get started
-                      </Button>
-                    </div>
-                    <div className="lg:col-span-3">
-                      <div className="relative bg-gray-900 rounded-lg overflow-hidden aspect-video">
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow cursor-pointer group">
-                            <Play className="w-8 h-8 text-gray-900 ml-1 group-hover:scale-110 transition-transform" fill="currentColor" />
-                          </div>
-                        </div>
-                        <div className="absolute bottom-4 left-4 text-white">
-                          <p className="text-sm opacity-80">See how Ulo Business Profile works - Slide {index + 1}</p>
-                        </div>
-                        {/* Video placeholder that would play when slide is active */}
-                        <video 
-                          className="w-full h-full object-cover opacity-0"
-                          autoPlay 
-                          muted 
-                          loop
-                          data-slide={index}
-                        >
-                          <source src={slide.videoUrl} type="video/mp4" />
-                        </video>
-                      </div>
-                    </div>
+          <div className="grid lg:grid-cols-5 gap-12 items-center">
+            <div className="lg:col-span-2">
+              <h1 className="text-5xl font-normal text-gray-900 mb-6 leading-tight animate-fade-in">
+                {heroContent.title}
+              </h1>
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed animate-fade-in">
+                {heroContent.description}
+              </p>
+              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-base animate-fade-in">
+                Get started
+              </Button>
+            </div>
+            <div className="lg:col-span-3">
+              <div className="relative bg-gray-900 rounded-lg overflow-hidden aspect-video">
+                <video 
+                  ref={videoRef}
+                  className="w-full h-full object-cover"
+                  autoPlay 
+                  muted 
+                  loop
+                  poster="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                >
+                  <source src={heroContent.videoUrl} type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
+                <div 
+                  className="absolute inset-0 flex items-center justify-center cursor-pointer"
+                  onClick={handleVideoToggle}
+                >
+                  <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow group">
+                    <Play className="w-8 h-8 text-gray-900 ml-1 group-hover:scale-110 transition-transform" fill="currentColor" />
                   </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-4" />
-            <CarouselNext className="right-4" />
-          </Carousel>
+                </div>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <p className="text-sm opacity-80">See how Ulo Business Profile works</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
