@@ -4,7 +4,8 @@ export const heroContent: HeroContent = {
   title: 'Stand out on Ulo with a free Business Profile',
   description:
     'Turn people who find you on Ulo Search and Maps into new customers with a free Business Profile for your storefront or service area.',
-  videoUrl: '/ulo-video.mp4'
+  videoUrl:
+    'https://res.cloudinary.com/deejaydev/video/upload/q_70/v1752616484/Ulo-v2-assets/Ulo_Short_Film-2_hal9ry.mp4'
 }
 
 export const businessSlides: BusinessSlide[] = [

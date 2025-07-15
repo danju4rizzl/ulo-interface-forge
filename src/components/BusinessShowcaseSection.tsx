@@ -30,7 +30,7 @@ const BusinessShowcaseSection: React.FC<BusinessShowcaseSectionProps> = ({ busin
     const interval = setInterval(() => {
       const nextSlide = (activeSlide + 1) % businessSlides.length
       handleSlideChange(nextSlide)
-    }, 10000)
+    }, 100000)
 
     return () => clearInterval(interval)
   }, [activeSlide, businessSlides.length])
@@ -105,7 +105,7 @@ const BusinessShowcaseSection: React.FC<BusinessShowcaseSectionProps> = ({ busin
                   muted
                   loop
                   controlsList="nodownload"
-                  className="h-[600px] w-[500px]"
+                  className="h-[600px] w-[500px] -mt-20"
                 >
                   <source
                     src={businessSlides[activeSlide].videoUrl}
@@ -113,15 +113,6 @@ const BusinessShowcaseSection: React.FC<BusinessShowcaseSectionProps> = ({ busin
                   />
                   Your browser does not support the video tag.
                 </video>
-
-                {/* Video title overlay */}
-                {/* <div className="absolute bottom-4 left-4 right-4">
-                  <div className="bg-black bg-opacity-50 px-4 py-2 rounded">
-                    <h4 className="text-white font-medium text-lg">
-                      {businessSlides[activeSlide].title}
-                    </h4>
-                  </div>
-                </div> */}
               </div>
             </div>
           </div>
