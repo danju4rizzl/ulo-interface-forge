@@ -188,11 +188,16 @@ const Index = () => {
                   onClick={() => setActiveSlide(index)}
                 >
                   {/* Line timer */}
-                  <div className="flex-shrink-0 w-1 h-16 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="flex-shrink-0 w-1 h-16 bg-gray-300 rounded-full overflow-hidden">
                     <div 
-                      className={`w-full bg-blue-600 transition-all duration-[4000ms] linear ${
-                        index === activeSlide ? 'h-full' : 'h-0'
+                      className={`w-full bg-blue-600 transition-all ease-linear ${
+                        index === activeSlide 
+                          ? 'h-full duration-[4000ms]' 
+                          : 'h-0 duration-300'
                       }`}
+                      style={{
+                        transformOrigin: 'top'
+                      }}
                     />
                   </div>
                   
