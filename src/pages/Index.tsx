@@ -177,52 +177,40 @@ const Index = () => {
           </div>
           
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left side - Sliding text content */}
-            <div className="relative h-80 overflow-hidden">
+            {/* Left side - Sliding text content with line timers */}
+            <div className="space-y-8">
               {businessSlides.map((slide, index) => (
                 <div
                   key={slide.id}
-                  className={`absolute inset-0 transition-all duration-700 ease-out ${
-                    index === activeSlide 
-                      ? 'transform translate-y-0 opacity-100' 
-                      : index < activeSlide 
-                        ? 'transform -translate-y-full opacity-0'
-                        : 'transform translate-y-full opacity-0'
+                  className={`flex items-start space-x-4 cursor-pointer transition-all duration-300 ${
+                    index === activeSlide ? 'opacity-100' : 'opacity-60 hover:opacity-80'
                   }`}
+                  onClick={() => setActiveSlide(index)}
                 >
-                  <h3 className="text-2xl font-medium text-gray-900 mb-4">{slide.title}</h3>
-                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    {slide.description}
-                  </p>
-                  <div className="flex space-x-2 mb-6">
-                    {businessSlides.map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setActiveSlide(i)}
-                        className={`w-3 h-3 rounded-full transition-colors ${
-                          i === activeSlide ? 'bg-blue-600' : 'bg-gray-300'
-                        }`}
-                      />
-                    ))}
+                  {/* Line timer */}
+                  <div className="flex-shrink-0 w-1 h-16 bg-gray-200 rounded-full overflow-hidden">
+                    <div 
+                      className={`w-full bg-blue-600 transition-all duration-[4000ms] linear ${
+                        index === activeSlide ? 'h-full' : 'h-0'
+                      }`}
+                    />
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3 className={`text-2xl font-medium text-gray-900 mb-2 transition-all duration-300 ${
+                      index === activeSlide ? 'text-blue-600' : 'text-gray-900'
+                    }`}>
+                      {slide.title}
+                    </h3>
+                    {index === activeSlide && (
+                      <p className="text-lg text-gray-600 leading-relaxed animate-fade-in">
+                        {slide.description}
+                      </p>
+                    )}
                   </div>
                 </div>
               ))}
-              
-              {/* Navigation arrows */}
-              <div className="absolute bottom-4 left-0 flex space-x-2">
-                <button
-                  onClick={() => setActiveSlide((prev) => (prev - 1 + businessSlides.length) % businessSlides.length)}
-                  className="p-2 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow"
-                >
-                  <ChevronLeft className="w-5 h-5 text-gray-600" />
-                </button>
-                <button
-                  onClick={() => setActiveSlide((prev) => (prev + 1) % businessSlides.length)}
-                  className="p-2 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow"
-                >
-                  <ChevronRight className="w-5 h-5 text-gray-600" />
-                </button>
-              </div>
             </div>
 
             {/* Right side - Video grid */}
