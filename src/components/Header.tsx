@@ -46,13 +46,21 @@ const Header: React.FC = () => {
   return (
     <header 
       ref={headerRef}
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/80 border-b border-white/10 transition-all duration-300"
+      className="fixed top-4 left-4 right-4 z-50 transition-all duration-300"
     >
       <div 
         ref={containerRef}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300"
+        className="hidden md:block mx-auto max-w-6xl"
       >
-        <div className="flex justify-between items-center h-16">
+        <div
+          className="rounded-2xl px-6 py-4 backdrop-blur-xl transition-all duration-300 border"
+          style={{
+            backgroundColor: `rgba(14, 8, 18, 0.13)`,
+            borderColor: `rgba(147, 96, 147, 0.2)`,
+            boxShadow: `0 25px 50px -12px rgba(6, 3, 9, 0.6)`
+          }}
+        >
+          <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
             <div className="text-2xl font-normal text-white">Ulo</div>
             <nav className="hidden md:flex space-x-8">
@@ -83,6 +91,7 @@ const Header: React.FC = () => {
             <Button className="text-sm px-6 bg-white text-black hover:bg-white/90">
               Get started
             </Button>
+          </div>
           </div>
         </div>
       </div>
