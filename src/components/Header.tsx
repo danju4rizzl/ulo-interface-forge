@@ -46,7 +46,7 @@ const Header: React.FC = () => {
   return (
     <header 
       ref={headerRef}
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 border-b border-white/20 transition-all duration-300"
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/80 border-b border-white/10 transition-all duration-300"
     >
       <div 
         ref={containerRef}
@@ -54,33 +54,33 @@ const Header: React.FC = () => {
       >
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
-            <div className="text-2xl font-normal text-foreground">Ulo</div>
+            <div className="text-2xl font-normal text-white">Ulo</div>
             <nav className="hidden md:flex space-x-8">
               <a
                 href="#"
-                className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+                className="text-white/70 hover:text-white text-sm transition-colors"
               >
                 Products
               </a>
               <a
                 href="#"
-                className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+                className="text-white/70 hover:text-white text-sm transition-colors"
               >
                 Solutions
               </a>
               <a
                 href="#"
-                className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+                className="text-white/70 hover:text-white text-sm transition-colors"
               >
                 Resources
               </a>
             </nav>
           </div>
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" className="text-sm">
+            <Button variant="ghost" className="text-sm text-white/70 hover:text-white hover:bg-white/10">
               Sign in
             </Button>
-            <Button className="text-sm px-6">
+            <Button className="text-sm px-6 bg-white text-black hover:bg-white/90">
               Get started
             </Button>
           </div>
