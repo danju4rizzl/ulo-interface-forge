@@ -1,4 +1,4 @@
-import { HeroContent, BusinessSlide } from '@/types';
+import { HeroContent, BusinessSlide, FlippedSlide } from '@/types';
 
 export const heroContent: HeroContent = {
   title: 'Stand out on Ulo with a free Business Profile',
@@ -40,5 +40,36 @@ export const businessSlides: BusinessSlide[] = [
       'Use insights and analytics to understand how customers find and interact with your business, helping you make data-driven decisions.',
     videoUrl:
       'https://res.cloudinary.com/dfcsaxtru/video/upload/v1752584118/PAYMENT_xomfml.mp4'
+  }
+]
+
+export const flippedSlides: FlippedSlide[] = [
+  {
+    id: 0,
+    title: 'Advanced Analytics',
+    description: 'Get detailed insights into your business performance with our comprehensive analytics dashboard.',
+    contentType: 'video',
+    videoUrl: 'https://res.cloudinary.com/dfcsaxtru/video/upload/v1752584143/HOST_XPE-_ptgjes.mp4'
+  },
+  {
+    id: 1,
+    title: 'Customer Engagement',
+    description: 'Build stronger relationships with your customers through personalized experiences and direct communication.',
+    contentType: 'image',
+    imageUrl: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 2,
+    title: 'Growth Strategies',
+    description: 'Implement proven strategies to scale your business and reach new markets effectively.',
+    contentType: 'video',
+    videoUrl: 'https://res.cloudinary.com/dfcsaxtru/video/upload/v1752586634/XPERIENCE_REELS_lj4ve6.mp4'
+  },
+  {
+    id: 3,
+    title: 'Technology Integration',
+    description: 'Seamlessly integrate modern technology solutions to streamline your operations and improve efficiency.',
+    contentType: 'image',
+    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop'
   }
 ]

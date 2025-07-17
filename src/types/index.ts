@@ -38,3 +38,13 @@ export interface FooterSection {
   title: string;
   links: FooterLink[];
 }
+
+export interface FlippedSlide {
+  id: number;
+  title: string;
+  description: string;
+  contentType: 'video' | 'image' | 'component';
+  videoUrl?: string;
+  imageUrl?: string;
+  component?: React.ReactNode;
+}
