@@ -1,23 +1,17 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { Button } from '@/components/ui/button';
-
 const Header: React.FC = () => {
   const headerRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const header = headerRef.current;
     const container = containerRef.current;
-    
     if (!header || !container) return;
-
     let isScrolled = false;
-
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const shouldShrink = scrollY >= 200;
-
       if (shouldShrink && !isScrolled) {
         isScrolled = true;
         gsap.to(container, {
@@ -38,48 +32,27 @@ const Header: React.FC = () => {
         });
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  return (
-    <header 
-      ref={headerRef}
-      className="fixed top-4 left-4 right-4 z-50 transition-all duration-300"
-    >
-      <div 
-        ref={containerRef}
-        className="hidden md:block mx-auto max-w-6xl"
-      >
-        <div
-          className="rounded-2xl px-6 py-4 backdrop-blur-xl transition-all duration-300 border"
-          style={{
-            backgroundColor: `rgba(14, 8, 18, 0.13)`,
-            borderColor: `rgba(147, 96, 147, 0.2)`,
-            boxShadow: `0 25px 50px -12px rgba(6, 3, 9, 0.6)`
-          }}
-        >
+  return <header ref={headerRef} className="fixed top-4 left-4 right-4 z-50 transition-all duration-300">
+      <div ref={containerRef} className="hidden md:block mx-auto max-w-6xl">
+        <div style={{
+        backgroundColor: `rgba(14, 8, 18, 0.13)`,
+        borderColor: `rgba(147, 96, 147, 0.2)`,
+        boxShadow: `0 25px 50px -12px rgba(6, 3, 9, 0.6)`
+      }} className="rounded-2xl backdrop-blur-xl transition-all duration-300 border py-[6px] px-[54px]">
           <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
             <div className="text-2xl font-normal text-white">Ulo</div>
             <nav className="hidden md:flex space-x-8">
-              <a
-                href="#"
-                className="text-white/70 hover:text-white text-sm transition-colors"
-              >
+              <a href="#" className="text-white/70 hover:text-white text-sm transition-colors">
                 Products
               </a>
-              <a
-                href="#"
-                className="text-white/70 hover:text-white text-sm transition-colors"
-              >
+              <a href="#" className="text-white/70 hover:text-white text-sm transition-colors">
                 Solutions
               </a>
-              <a
-                href="#"
-                className="text-white/70 hover:text-white text-sm transition-colors"
-              >
+              <a href="#" className="text-white/70 hover:text-white text-sm transition-colors">
                 Resources
               </a>
             </nav>
@@ -95,8 +68,6 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
-    </header>
-  );
+    </header>;
 };
-
 export default Header;
