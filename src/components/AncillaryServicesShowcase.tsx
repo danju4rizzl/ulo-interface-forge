@@ -110,11 +110,11 @@ const AncillaryServicesShowcase: React.FC<AncillaryServicesShowcaseProps> = ({
               {currentSlide.spotlightTitle}
             </h3>
           )}
-          {currentSlide.spotlightDescription && (
+          {/* {currentSlide.spotlightDescription && (
             <p className="text-gray-300 text-lg leading-relaxed max-w-md mb-6">
               {currentSlide.spotlightDescription}
             </p>
-          )}
+          )} */}
           {/* Additional detailed content */}
           <div className="text-gray-400 text-base leading-relaxed max-w-lg text-center">
             <p>{getDetailedDescription(currentSlide.id)}</p>
