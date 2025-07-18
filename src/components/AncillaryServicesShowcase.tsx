@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Play } from 'lucide-react'
-import CardSwap, { Card } from '@/components/CardSwap'
 import SpotlightCard from '@/components/SpotlightCard'
 
-interface FlippedSlide {
+interface ServiceSlide {
   id: number
   title: string
   description: string
@@ -17,20 +15,20 @@ interface FlippedSlide {
   spotlightDescription?: string
 }
 
-interface FlippedShowcaseSectionProps {
-  slides: FlippedSlide[]
+interface AncillaryServicesShowcaseProps {
+  slides: ServiceSlide[]
   sectionTitle: string
 }
 
-const FlippedShowcaseSection: React.FC<FlippedShowcaseSectionProps> = ({
+const AncillaryServicesShowcase: React.FC<AncillaryServicesShowcaseProps> = ({
   slides,
   sectionTitle
 }) => {
   const [activeSlide, setActiveSlide] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
-  const [videoDuration, setVideoDuration] = useState(0)
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const [isPaused, setIsPaused] = useState(false)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
+  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   // Clear any existing timer
   const clearTimer = () => {
@@ -40,11 +38,20 @@ const FlippedShowcaseSection: React.FC<FlippedShowcaseSectionProps> = ({
     }
   }
 
+  // Clear pause timeout
+  const clearPauseTimeout = () => {
+    if (pauseTimeoutRef.current) {
+      clearTimeout(pauseTimeoutRef.current)
+      pauseTimeoutRef.current = null
+    }
+  }
+
   // Handle slide change with animation
-  const handleSlideChange = (newSlideIndex: number) => {
+  const handleSlideChange = (newSlideIndex: number, isManualClick = false) => {
     if (newSlideIndex === activeSlide) return
 
     clearTimer() // Clear any existing timer
+    clearPauseTimeout() // Clear any existing pause timeout
     setIsTransitioning(true)
 
     // Small delay to trigger fade out, then change slide
@@ -55,109 +62,80 @@ const FlippedShowcaseSection: React.FC<FlippedShowcaseSectionProps> = ({
         setIsTransitioning(false)
       }, 300)
     }, 150)
+
+    // If manual click, pause auto-advance for 20 seconds
+    if (isManualClick) {
+      setIsPaused(true)
+      pauseTimeoutRef.current = setTimeout(() => {
+        setIsPaused(false)
+      }, 20000) // 20 seconds pause
+    }
   }
 
-  // Handle video loaded metadata to get duration
-  const handleVideoLoadedMetadata = () => {
-    if (videoRef.current) {
-      const duration = videoRef.current.duration
-      setVideoDuration(duration)
-
-      // Clear any existing timer and set new one based on video duration
-      // Use minimum of 3 seconds if video is too short or duration is invalid
-      const timerDuration = duration && duration > 1 ? duration * 1000 : 5000
-
+  // Auto-advance for all content types (3 seconds)
+  useEffect(() => {
+    if (!isPaused) {
       clearTimer()
       timerRef.current = setTimeout(() => {
         const nextSlide = (activeSlide + 1) % slides.length
         handleSlideChange(nextSlide)
-      }, timerDuration)
+      }, 3000) // 3 seconds for all content
     }
-  }
+  }, [activeSlide, slides, isPaused])
 
-  // Handle video ended event
-  const handleVideoEnded = () => {
-    const nextSlide = (activeSlide + 1) % slides.length
-    handleSlideChange(nextSlide)
-  }
-
-  // Auto-advance for non-video content
+  // Clean up timers on component unmount
   useEffect(() => {
-    if (slides[activeSlide].contentType !== 'video') {
+    return () => {
       clearTimer()
-      timerRef.current = setTimeout(() => {
-        const nextSlide = (activeSlide + 1) % slides.length
-        handleSlideChange(nextSlide)
-      }, 5000) // 5 seconds for non-video content
+      clearPauseTimeout()
     }
-  }, [activeSlide, slides])
-
-  // Clean up timer on component unmount
-  useEffect(() => {
-    return () => clearTimer()
   }, [])
-
-  // Reset timer when active slide changes
-  useEffect(() => {
-    clearTimer()
-    // Timer will be set when video metadata loads or in the effect above
-  }, [activeSlide])
 
   const renderContent = () => {
     const currentSlide = slides[activeSlide]
 
-    switch (currentSlide.contentType) {
-      case 'video':
-        return (
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            controlsList="nodownload"
-            className="h-[600px] w-[500px] -mt-12"
-            onLoadedMetadata={handleVideoLoadedMetadata}
-            onEnded={handleVideoEnded}
-            key={activeSlide}
-          >
-            <source src={currentSlide.videoUrl} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        )
-      case 'image':
-        return (
-          <img
-            src={currentSlide.imageUrl}
-            alt={currentSlide.title}
-            className="h-[600px] w-[500px] -mt-12 object-cover rounded-lg"
-            key={activeSlide}
-          />
-        )
-      case 'component':
-        return (
-          <div className="h-[600px] w-[500px] -mt-12 flex items-center justify-center">
-            <SpotlightCard
-              className="w-full h-full flex flex-col items-center justify-center text-center custom-spotlight-card animate-fade-in"
-              spotlightColor="rgba(0, 229, 255, 0.2)"
-            >
-              {currentSlide.icon && (
-                <div className="mb-6 text-blue-400">{currentSlide.icon}</div>
-              )}
-              {currentSlide.spotlightTitle && (
-                <h3 className="text-2xl font-semibold text-white mb-4">
-                  {currentSlide.spotlightTitle}
-                </h3>
-              )}
-              {currentSlide.spotlightDescription && (
-                <p className="text-gray-300 text-lg leading-relaxed max-w-md">
-                  {currentSlide.spotlightDescription}
-                </p>
-              )}
-            </SpotlightCard>
+    return (
+      <div className="h-[600px] w-[500px] -mt-12 flex items-center justify-center">
+        <SpotlightCard
+          className="w-full h-full flex flex-col items-center justify-center text-center custom-spotlight-card animate-fade-in"
+          spotlightColor="rgba(0, 229, 255, 0.2)"
+        >
+          {currentSlide.icon && (
+            <div className="mb-8 text-blue-400 text-6xl">
+              {currentSlide.icon}
+            </div>
+          )}
+          {currentSlide.spotlightTitle && (
+            <h3 className="text-3xl font-semibold text-white mb-6">
+              {currentSlide.spotlightTitle}
+            </h3>
+          )}
+          {currentSlide.spotlightDescription && (
+            <p className="text-gray-300 text-lg leading-relaxed max-w-md mb-6">
+              {currentSlide.spotlightDescription}
+            </p>
+          )}
+          {/* Additional detailed content */}
+          <div className="text-gray-400 text-base leading-relaxed max-w-lg text-center">
+            <p>{getDetailedDescription(currentSlide.id)}</p>
           </div>
-        )
-      default:
-        return null
+        </SpotlightCard>
+      </div>
+    )
+  }
+
+  // Helper function to provide more detailed descriptions for each service
+  const getDetailedDescription = (slideId: number) => {
+    const descriptions = {
+      0: 'Professional chauffeur services available 24/7. Choose from luxury sedans, SUVs, or executive vehicles. Perfect for airport transfers, business meetings, or special occasions.',
+      1: 'Experience breathtaking aerial views with our certified pilots. Ideal for special events, scenic tours, or VIP transportation. All flights include safety briefings and professional service.',
+      2: 'Highly trained security professionals with extensive backgrounds in personal protection. Discreet, professional, and reliable service for high-profile individuals and events.',
+      3: 'Authentic African wellness treatments using traditional herbs and healing practices. Our certified therapists provide holistic care for mind, body, and spirit rejuvenation.',
+      4: 'Premium garment care using eco-friendly processes. Same-day service available with convenient pickup and delivery. Specialized care for delicate fabrics and designer clothing.',
+      5: 'World-class chefs trained in international cuisine. Custom menu planning, dietary accommodations, and presentation that exceeds expectations for any occasion.',
+      6: 'Certified yoga instructors specializing in African-inspired practices. Sessions include meditation, breathwork, and movement that connects you with ancient wisdom and modern wellness.'
     }
+    return descriptions[slideId] || slides[slideId]?.spotlightDescription || ''
   }
 
   return (
@@ -195,20 +173,14 @@ const FlippedShowcaseSection: React.FC<FlippedShowcaseSectionProps> = ({
                     ? 'opacity-100'
                     : 'opacity-60 hover:opacity-80'
                 }`}
-                onClick={() => handleSlideChange(index)}
+                onClick={() => handleSlideChange(index, true)}
               >
                 {/* Line timer */}
                 <div className="flex-shrink-0 w-1 h-16 bg-gray-300 rounded-full overflow-hidden">
                   <div
                     className={`w-full bg-primary transition-all ease-linear ${
-                      index === activeSlide
-                        ? `h-full duration-[${
-                            slide.contentType === 'video' &&
-                            videoDuration &&
-                            videoDuration > 1
-                              ? videoDuration * 1000
-                              : 5000
-                          }ms]`
+                      index === activeSlide && !isPaused
+                        ? 'h-full duration-[3000ms]'
                         : 'h-0 duration-300'
                     }`}
                     style={{
@@ -241,4 +213,4 @@ const FlippedShowcaseSection: React.FC<FlippedShowcaseSectionProps> = ({
   )
 }
 
-export default FlippedShowcaseSection
+export default AncillaryServicesShowcase

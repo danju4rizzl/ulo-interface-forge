@@ -52,3 +52,6 @@ export interface FlippedSlide {
   spotlightTitle?: string
   spotlightDescription?: string
 }
+
+// Alias for backward compatibility and semantic clarity
+export interface ServiceSlide extends FlippedSlide {}

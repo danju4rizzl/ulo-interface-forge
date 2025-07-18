@@ -1,6 +1,6 @@
 import React from 'react'
 import { HeroContent, BusinessSlide, FlippedSlide } from '@/types'
-import { BarChart3, Users, Zap, Settings } from 'lucide-react'
+import { Car, Plane, Shield, Leaf, Shirt, ChefHat, User } from 'lucide-react'
 
 export const heroContent: HeroContent = {
   title: 'Stand out on Ulo with a free Business Profile',
@@ -48,46 +48,68 @@ export const businessSlides: BusinessSlide[] = [
 export const flippedSlides: FlippedSlide[] = [
   {
     id: 0,
-    title: 'Advanced Analytics',
-    description:
-      'Get detailed insights into your business performance with our comprehensive analytics dashboard.',
+    title: 'Car Rental',
+    description: 'Airport Pick-up and Drop-off or Personal Ride.',
     contentType: 'component',
-    icon: React.createElement(BarChart3, { size: 48 }),
-    spotlightTitle: 'Advanced Analytics',
-    spotlightDescription:
-      'Track performance metrics, analyze customer behavior, and make data-driven decisions with our comprehensive analytics suite.'
+    icon: React.createElement(Car, { size: 48 }),
+    spotlightTitle: 'CAR RENTAL',
+    spotlightDescription: 'Airport Pick-up and Drop-off or Personal Ride.'
   },
   {
     id: 1,
-    title: 'Customer Engagement',
-    description:
-      'Build stronger relationships with your customers through personalized experiences and direct communication.',
+    title: 'Helicopter Rental',
+    description: 'Luxury transfers and scenic aerial tours.',
     contentType: 'component',
-    icon: React.createElement(Users, { size: 48 }),
-    spotlightTitle: 'Customer Engagement',
-    spotlightDescription:
-      'Connect with your audience through personalized experiences, direct messaging, and community building tools.'
+    icon: React.createElement(Plane, { size: 48 }),
+    spotlightTitle: 'HELICOPTER RENTAL',
+    spotlightDescription: 'Luxury transfers and scenic aerial tours.'
   },
   {
     id: 2,
-    title: 'Growth Strategies',
-    description:
-      'Implement proven strategies to scale your business and reach new markets effectively.',
+    title: 'Personal Security',
+    description: 'Trained escorts for private safety and peace of mind.',
     contentType: 'component',
-    icon: React.createElement(Zap, { size: 48 }),
-    spotlightTitle: 'Growth Acceleration',
+    icon: React.createElement(Shield, { size: 48 }),
+    spotlightTitle: 'PERSONAL SECURITY',
     spotlightDescription:
-      'Scale your business with proven growth strategies, market expansion tools, and performance optimization.'
+      'Trained escorts for private safety and peace of mind.'
   },
   {
     id: 3,
-    title: 'Technology Integration',
-    description:
-      'Seamlessly integrate modern technology solutions to streamline your operations and improve efficiency.',
+    title: 'Herbal Care & Spa',
+    description: 'Traditional wellness treatments rooted in African healing.',
     contentType: 'component',
-    icon: React.createElement(Settings, { size: 48 }),
-    spotlightTitle: 'Smart Integration',
+    icon: React.createElement(Leaf, { size: 48 }),
+    spotlightTitle: 'HERBAL CARE & SPA',
     spotlightDescription:
-      'Streamline operations with seamless technology integration, automated workflows, and intelligent systems.'
+      'Traditional wellness treatments rooted in African healing.'
+  },
+  {
+    id: 4,
+    title: 'Laundry & Dry Cleaning',
+    description: 'Premium garment care with swift pick-up and delivery.',
+    contentType: 'component',
+    icon: React.createElement(Shirt, { size: 48 }),
+    spotlightTitle: 'LAUNDRY & DRY CLEANING',
+    spotlightDescription:
+      'Premium garment care with swift pick-up and delivery.'
+  },
+  {
+    id: 5,
+    title: 'Continental Chef',
+    description: 'On-demand gourmet meals prepared by certified chefs.',
+    contentType: 'component',
+    icon: React.createElement(ChefHat, { size: 48 }),
+    spotlightTitle: 'CONTINENTAL CHEF',
+    spotlightDescription: 'On-demand gourmet meals prepared by certified chefs.'
+  },
+  {
+    id: 6,
+    title: 'Africa Yoga Instructor',
+    description: 'Guided yoga sessions with a touch of African soul.',
+    contentType: 'component',
+    icon: React.createElement(User, { size: 48 }),
+    spotlightTitle: 'AFRICA YOGA INSTRUCTOR',
+    spotlightDescription: 'Guided yoga sessions with a touch of African soul.'
   }
 ]

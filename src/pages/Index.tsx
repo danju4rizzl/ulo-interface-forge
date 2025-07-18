@@ -8,7 +8,7 @@ import CTASection from '@/components/CTASection'
 import FAQSection from '@/components/FAQSection'
 import Footer from '@/components/Footer'
 import ScrollDotsSection from '@/components/ScrollDotsSection'
-import FlippedShowcaseSection from '@/components/FlippedShowcaseSection'
+import AncillaryServicesShowcase from '@/components/AncillaryServicesShowcase'
 import { heroContent, businessSlides, flippedSlides } from '@/data'
 
 const Index = () => {
@@ -25,9 +25,9 @@ const Index = () => {
 
         <ScrollDotsSection />
 
-        <FlippedShowcaseSection
+        <AncillaryServicesShowcase
           slides={flippedSlides}
-          sectionTitle="Discover Advanced Features"
+          sectionTitle="Ancillary Services"
         />
 
         <AnalyticsSection />

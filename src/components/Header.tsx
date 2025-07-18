@@ -70,45 +70,39 @@ const Header: React.FC = () => {
         <div ref={containerRef} className="hidden md:block mx-auto w-3/4">
           <div
             style={{
-              backgroundColor: `rgba(14, 8, 18, 0.13)`,
+              backgroundColor: `rgba(0, 0, 18, 0.85)`,
               boxShadow: `0 25px 50px -12px rgba(6, 3, 9, 0.2)`
             }}
-            className="rounded-full backdrop-blur-xl transition-all duration-300 border py-[6px] px-[54px]"
+            className="rounded-full backdrop-blur-xl transition-all duration-300  py-[6px] px-[54px]"
           >
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center space-x-8">
-                <div className="text-2xl font-normal text-black">Ulo</div>
-                <nav className="hidden md:flex space-x-8 items-center">
-                  <Button
-                    variant="ghost"
-                    className="text-sm text-black/70 hover:text-black hover:bg-black/10"
-                  >
-                    <Link to={'#'}>Products</Link>
-                  </Button>
-
-                  <Button
-                    variant="ghost"
-                    className="text-sm text-black/70 hover:text-black hover:bg-black/10"
-                  >
-                    <Link to={'#'}>Solutions</Link>
-                  </Button>
-
-                  <Button
-                    variant="ghost"
-                    className="text-sm text-black/70 hover:text-black hover:bg-black/10"
-                  >
-                    <Link to={'#'}>Resources</Link>
-                  </Button>
-                </nav>
+                <div className="text-2xl font-normal text-white">Ulo</div>
               </div>
-              <div className="flex items-center space-x-4">
+              <nav className="hidden md:flex space-x-8 items-center ">
                 <Button
                   variant="ghost"
-                  className="text-sm text-black/70 hover:text-black hover:bg-black/10"
+                  className="text-sm text-white hover:text-black/70 hover:bg-white"
                 >
-                  Sign in
+                  <Link to={'#'}>Products</Link>
                 </Button>
-                <Button className="text-sm px-6 bg-black text-white hover:bg-black/90">
+
+                <Button
+                  variant="ghost"
+                  className="text-sm text-white hover:text-black/70 hover:bg-white"
+                >
+                  <Link to={'#'}>Solutions</Link>
+                </Button>
+
+                <Button
+                  variant="ghost"
+                  className="text-sm text-white hover:text-black/70 hover:bg-white"
+                >
+                  <Link to={'#'}>Resources</Link>
+                </Button>
+              </nav>
+              <div className="flex items-center space-x-4">
+                <Button variant="outline" className="text-sm px-6  ">
                   Get started
                 </Button>
               </div>
