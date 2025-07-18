@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Play } from 'lucide-react'
+import CardSwap, { Card } from '@/components/CardSwap'
+import SpotlightCard from '@/components/SpotlightCard'
 
 interface FlippedSlide {
   id: number
@@ -9,6 +11,10 @@ interface FlippedSlide {
   videoUrl?: string
   imageUrl?: string
   component?: React.ReactNode
+  // SpotlightCard specific properties
+  icon?: React.ReactNode
+  spotlightTitle?: string
+  spotlightDescription?: string
 }
 
 interface FlippedShowcaseSectionProps {
@@ -99,7 +105,7 @@ const FlippedShowcaseSection: React.FC<FlippedShowcaseSectionProps> = ({
 
   const renderContent = () => {
     const currentSlide = slides[activeSlide]
-    
+
     switch (currentSlide.contentType) {
       case 'video':
         return (
@@ -113,10 +119,7 @@ const FlippedShowcaseSection: React.FC<FlippedShowcaseSectionProps> = ({
             onEnded={handleVideoEnded}
             key={activeSlide}
           >
-            <source
-              src={currentSlide.videoUrl}
-              type="video/mp4"
-            />
+            <source src={currentSlide.videoUrl} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         )
@@ -131,8 +134,25 @@ const FlippedShowcaseSection: React.FC<FlippedShowcaseSectionProps> = ({
         )
       case 'component':
         return (
-          <div className="h-[600px] w-[500px] -mt-12" key={activeSlide}>
-            {currentSlide.component}
+          <div className="h-[600px] w-[500px] -mt-12 flex items-center justify-center">
+            <SpotlightCard
+              className="w-full h-full flex flex-col items-center justify-center text-center custom-spotlight-card animate-fade-in"
+              spotlightColor="rgba(0, 229, 255, 0.2)"
+            >
+              {currentSlide.icon && (
+                <div className="mb-6 text-blue-400">{currentSlide.icon}</div>
+              )}
+              {currentSlide.spotlightTitle && (
+                <h3 className="text-2xl font-semibold text-white mb-4">
+                  {currentSlide.spotlightTitle}
+                </h3>
+              )}
+              {currentSlide.spotlightDescription && (
+                <p className="text-gray-300 text-lg leading-relaxed max-w-md">
+                  {currentSlide.spotlightDescription}
+                </p>
+              )}
+            </SpotlightCard>
           </div>
         )
       default:
@@ -183,7 +203,9 @@ const FlippedShowcaseSection: React.FC<FlippedShowcaseSectionProps> = ({
                     className={`w-full bg-primary transition-all ease-linear ${
                       index === activeSlide
                         ? `h-full duration-[${
-                            slide.contentType === 'video' && videoDuration && videoDuration > 1
+                            slide.contentType === 'video' &&
+                            videoDuration &&
+                            videoDuration > 1
                               ? videoDuration * 1000
                               : 5000
                           }ms]`

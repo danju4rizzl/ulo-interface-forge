@@ -40,11 +40,15 @@ export interface FooterSection {
 }
 
 export interface FlippedSlide {
-  id: number;
-  title: string;
-  description: string;
-  contentType: 'video' | 'image' | 'component';
-  videoUrl?: string;
-  imageUrl?: string;
-  component?: React.ReactNode;
+  id: number
+  title: string
+  description: string
+  contentType: 'video' | 'image' | 'component'
+  videoUrl?: string
+  imageUrl?: string
+  component?: React.ReactNode
+  // SpotlightCard specific properties
+  icon?: React.ReactNode
+  spotlightTitle?: string
+  spotlightDescription?: string
 }

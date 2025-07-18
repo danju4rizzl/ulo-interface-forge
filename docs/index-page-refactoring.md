@@ -57,15 +57,34 @@ To modify the hero section:
 ### BusinessShowcaseSection Enhancement
 - **Changed from grid layout to single video display**: Now shows only one video at a time for the active slide
 - **Added smooth fade transition**: Videos fade in/out when switching between slides with a 500ms duration
-- **Improved user experience**: Added slide indicators below the video for easy navigation
-- **Enhanced visual elements**: Added LIVE indicator and video title overlay
-- **Reduced auto-advance timing**: Changed from 10 seconds to 3 seconds for better engagement
+- **Video duration-based auto-advance**: Slides now automatically advance when the current video finishes playing, instead of using a fixed timer
+- **Dynamic line timer**: The progress line timer now matches the actual video duration for accurate visual feedback
+- **Improved video handling**: Added proper video event listeners for `onLoadedMetadata` and `onEnded` events
+- **Fallback mechanism**: Uses a 5-second fallback if video duration is unavailable or too short
+- **Enhanced user experience**: Users can still manually navigate between slides while videos are playing
 
 ### Video Controls Enhancement (HeroSection)
 - **Full-screen support**: Users can enter full-screen mode by double-clicking the video or using native video controls
 - **Escape key support**: Users can exit full-screen mode by pressing the Escape key or double-clicking again
 - **Improved video controls**: Native video controls are now properly accessible without overlay interference
 - **Better state management**: Video play/pause state is properly synchronized with user interactions
+
+## Technical Implementation Details
+
+### Video Duration-Based Timing
+The BusinessShowcaseSection now uses the following approach for slide timing:
+
+1. **Video Metadata Loading**: When a video loads, the `onLoadedMetadata` event captures the video duration
+2. **Dynamic Timer**: A setTimeout is created based on the actual video duration
+3. **Video End Handling**: The `onEnded` event provides a backup trigger for slide advancement
+4. **Fallback Mechanism**: If video duration is unavailable or less than 1 second, a 5-second fallback is used
+5. **Timer Management**: Timers are properly cleared when slides change manually or component unmounts
+
+### Line Timer Synchronization
+The progress line animation duration is dynamically calculated to match the video duration:
+```typescript
+duration-[${videoDuration && videoDuration > 1 ? videoDuration * 1000 : 5000}ms]
+```
 
 ## Future Improvements
 
@@ -75,3 +94,5 @@ To modify the hero section:
 4. Consider adding more props to components for greater flexibility
 5. Add video preloading for smoother transitions in BusinessShowcaseSection
 6. Consider adding keyboard navigation support for slide indicators
+7. Add video loading states and error handling
+8. Consider adding pause/resume functionality when user hovers over videos

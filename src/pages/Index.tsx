@@ -15,26 +15,26 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      
+
       <div className="pt-24">
         <HeroSection heroContent={heroContent} />
 
-      <FeaturesSection />
+        <FeaturesSection />
 
-      <BusinessShowcaseSection businessSlides={businessSlides} />
+        <BusinessShowcaseSection businessSlides={businessSlides} />
 
-      <FlippedShowcaseSection 
-        slides={flippedSlides} 
-        sectionTitle="Discover Advanced Features"
-      />
+        <ScrollDotsSection />
 
-      <ScrollDotsSection />
+        <FlippedShowcaseSection
+          slides={flippedSlides}
+          sectionTitle="Discover Advanced Features"
+        />
 
-      <AnalyticsSection />
+        <AnalyticsSection />
 
-      <CTASection />
+        <CTASection />
 
-      <FAQSection />
+        <FAQSection />
 
         <Footer />
       </div>

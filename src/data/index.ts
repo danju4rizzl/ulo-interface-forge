@@ -1,4 +1,6 @@
-import { HeroContent, BusinessSlide, FlippedSlide } from '@/types';
+import React from 'react'
+import { HeroContent, BusinessSlide, FlippedSlide } from '@/types'
+import { BarChart3, Users, Zap, Settings } from 'lucide-react'
 
 export const heroContent: HeroContent = {
   title: 'Stand out on Ulo with a free Business Profile',
@@ -47,29 +49,45 @@ export const flippedSlides: FlippedSlide[] = [
   {
     id: 0,
     title: 'Advanced Analytics',
-    description: 'Get detailed insights into your business performance with our comprehensive analytics dashboard.',
-    contentType: 'video',
-    videoUrl: 'https://res.cloudinary.com/dfcsaxtru/video/upload/v1752584143/HOST_XPE-_ptgjes.mp4'
+    description:
+      'Get detailed insights into your business performance with our comprehensive analytics dashboard.',
+    contentType: 'component',
+    icon: React.createElement(BarChart3, { size: 48 }),
+    spotlightTitle: 'Advanced Analytics',
+    spotlightDescription:
+      'Track performance metrics, analyze customer behavior, and make data-driven decisions with our comprehensive analytics suite.'
   },
   {
     id: 1,
     title: 'Customer Engagement',
-    description: 'Build stronger relationships with your customers through personalized experiences and direct communication.',
-    contentType: 'image',
-    imageUrl: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?q=80&w=800&auto=format&fit=crop'
+    description:
+      'Build stronger relationships with your customers through personalized experiences and direct communication.',
+    contentType: 'component',
+    icon: React.createElement(Users, { size: 48 }),
+    spotlightTitle: 'Customer Engagement',
+    spotlightDescription:
+      'Connect with your audience through personalized experiences, direct messaging, and community building tools.'
   },
   {
     id: 2,
     title: 'Growth Strategies',
-    description: 'Implement proven strategies to scale your business and reach new markets effectively.',
-    contentType: 'video',
-    videoUrl: 'https://res.cloudinary.com/dfcsaxtru/video/upload/v1752586634/XPERIENCE_REELS_lj4ve6.mp4'
+    description:
+      'Implement proven strategies to scale your business and reach new markets effectively.',
+    contentType: 'component',
+    icon: React.createElement(Zap, { size: 48 }),
+    spotlightTitle: 'Growth Acceleration',
+    spotlightDescription:
+      'Scale your business with proven growth strategies, market expansion tools, and performance optimization.'
   },
   {
     id: 3,
     title: 'Technology Integration',
-    description: 'Seamlessly integrate modern technology solutions to streamline your operations and improve efficiency.',
-    contentType: 'image',
-    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop'
+    description:
+      'Seamlessly integrate modern technology solutions to streamline your operations and improve efficiency.',
+    contentType: 'component',
+    icon: React.createElement(Settings, { size: 48 }),
+    spotlightTitle: 'Smart Integration',
+    spotlightDescription:
+      'Streamline operations with seamless technology integration, automated workflows, and intelligent systems.'
   }
 ]
