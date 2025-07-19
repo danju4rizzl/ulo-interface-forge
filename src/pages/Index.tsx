@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '@/components/Header'
 import HeroSection from '@/components/HeroSection'
+import VideoShowcaseSection from '@/components/VideoShowcaseSection'
 import FeaturesSection from '@/components/FeaturesSection'
 import BusinessShowcaseSection from '@/components/BusinessShowcaseSection'
 import AnalyticsSection from '@/components/AnalyticsSection'
@@ -18,6 +19,8 @@ const Index = () => {
 
       <div className="pt-24">
         <HeroSection heroContent={heroContent} />
+
+        <VideoShowcaseSection heroContent={heroContent} />
 
         <FeaturesSection />
 
