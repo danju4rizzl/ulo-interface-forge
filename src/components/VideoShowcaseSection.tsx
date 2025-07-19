@@ -164,13 +164,13 @@ const VideoShowcaseSection: React.FC<VideoShowcaseSectionProps> = ({
           )}
 
           {/* Video description - only show when not in fullscreen */}
-          {!isFullscreen && (
+          {/* {!isFullscreen && (
             <div className="absolute bottom-4 left-4 text-white pointer-events-none">
               <p className="text-sm opacity-80">
                 See how Ulo Business Profile works
               </p>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </section>

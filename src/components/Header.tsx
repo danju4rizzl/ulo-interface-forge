@@ -33,30 +33,39 @@ const Header: React.FC = () => {
     const header = headerRef.current
     const container = containerRef.current
     if (!header || !container) return
-    let isScrolled = false
+    let isExpanded = false
+
     const handleScroll = () => {
       const scrollY = window.scrollY
-      const shouldShrink = scrollY >= 200
-      if (shouldShrink && !isScrolled) {
-        isScrolled = true
+      const shouldExpand = scrollY < 200
+      if (shouldExpand && !isExpanded) {
+        isExpanded = true
         gsap.to(container, {
           duration: 0.6,
-          maxWidth: 'calc(100% - 600px)',
-          borderRadius: '24px',
-          marginTop: '12px',
+          maxWidth: '80%',
+          borderRadius: '32px',
+          marginTop: '8px',
+          padding: '12px 64px',
+          scale: 1.05,
           ease: 'power2.out'
         })
-      } else if (!shouldShrink && isScrolled) {
-        isScrolled = false
+      } else if (!shouldExpand && isExpanded) {
+        isExpanded = false
         gsap.to(container, {
           duration: 0.6,
-          maxWidth: '100%',
-          borderRadius: '0px',
+          maxWidth: '65%',
+          borderRadius: '24px',
           marginTop: '0px',
+          padding: '6px 54px',
+          scale: 1,
           ease: 'power2.out'
         })
       }
     }
+
+    // Set initial state based on current scroll position
+    handleScroll()
+
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -67,13 +76,17 @@ const Header: React.FC = () => {
         className="fixed top-4 left-4 right-4 z-[100] transition-all duration-300"
       >
         {/* Desktop Navbar */}
-        <div ref={containerRef} className="hidden md:block mx-auto w-3/4">
+        <div
+          ref={containerRef}
+          className="hidden md:block mx-auto"
+          style={{ maxWidth: '75%' }}
+        >
           <div
             style={{
               backgroundColor: `rgba(0, 0, 18, 0.1)`,
               boxShadow: `0 25px 50px -12px rgba(6, 3, 9, 0.2)`
             }}
-            className="rounded-full backdrop-blur-xl transition-all duration-300  py-[6px] px-[54px]"
+            className="rounded-3xl backdrop-blur-xl transition-all duration-300 py-[6px] px-[54px]"
           >
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center space-x-8">
