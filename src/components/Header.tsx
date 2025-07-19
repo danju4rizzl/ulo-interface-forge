@@ -8,26 +8,39 @@ const Header: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  // Improved mobile menu toggler for correct open/close animation
   const toggleMobileMenu = () => {
-    const menu = mobileMenuRef.current
-    if (!menu) return
-
     if (!isMobileMenuOpen) {
       setIsMobileMenuOpen(true)
-      gsap.fromTo(
-        menu,
-        { x: '100%' },
-        { x: '0%', duration: 0.5, ease: 'power2.out' }
-      )
     } else {
-      gsap.to(menu, {
-        x: '100%',
-        duration: 0.5,
-        ease: 'power2.out',
-        onComplete: () => setIsMobileMenuOpen(false)
-      })
+      // Animate out, then close
+      const menu = mobileMenuRef.current
+      if (menu) {
+        gsap.to(menu, {
+          x: '100%',
+          duration: 0.5,
+          ease: 'power2.out',
+          onComplete: () => setIsMobileMenuOpen(false)
+        })
+      } else {
+        setIsMobileMenuOpen(false)
+      }
     }
   }
+
+  // Animate menu in when it appears
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      const menu = mobileMenuRef.current
+      if (menu) {
+        gsap.fromTo(
+          menu,
+          { x: '100%' },
+          { x: '0%', duration: 0.5, ease: 'power2.out' }
+        )
+      }
+    }
+  }, [isMobileMenuOpen])
 
   useEffect(() => {
     const header = headerRef.current
@@ -91,7 +104,11 @@ const Header: React.FC = () => {
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center space-x-8">
                 <Link to={'/'}>
-                  <img src="/ulo-log-alt.png" alt="Ulo" className="h-6" />
+                  <img
+                    src="/ulo-log-alt.png"
+                    alt="Logo of Ulo"
+                    className="h-6"
+                  />
                 </Link>
               </div>
               <nav className="hidden md:flex space-x-8 items-center ">
@@ -139,7 +156,9 @@ const Header: React.FC = () => {
             className="rounded-2xl backdrop-blur-xl transition-all duration-300 border py-3 px-6"
           >
             <div className="flex justify-between items-center h-12">
-              <div className="text-2xl font-normal text-black">Ulo</div>
+              <Link to={'/'}>
+                <img src="/ulo-log-alt.png" alt="Ulo" className="h-6" />
+              </Link>
               <Button
                 variant="ghost"
                 size="icon"
@@ -166,14 +185,16 @@ const Header: React.FC = () => {
         >
           <div className="backdrop-blur-xl h-full border-l border-white/20 p-6">
             <div className="flex justify-between items-center mb-8">
-              <div className="text-2xl font-normal text-black">Ulo</div>
+              <Link to={'/'}>
+                <img src="/ulo-logo.png" alt="Logo of Ulo" className="h-10" />
+              </Link>
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={toggleMobileMenu}
                 className="text-black hover:bg-black/10"
               >
-                <X className="h-6 w-6" />
+                <X className="h-8 w-8" />
               </Button>
             </div>
 
