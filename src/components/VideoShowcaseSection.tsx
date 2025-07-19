@@ -6,9 +6,15 @@ interface VideoShowcaseSectionProps {
   heroContent: HeroContent
 }
 
-const VideoShowcaseSection: React.FC<VideoShowcaseSectionProps> = ({ heroContent }) => {
+const THUMBNAIL_URL =
+  'https://res.cloudinary.com/dfcsaxtru/video/upload/v1752925399/THUMBNAIL_rjfdcd.mp4'
+
+const VideoShowcaseSection: React.FC<VideoShowcaseSectionProps> = ({
+  heroContent
+}) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const [isFullscreen, setIsFullscreen] = useState(false)
+  const [showFullVideo, setShowFullVideo] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -52,16 +58,12 @@ const VideoShowcaseSection: React.FC<VideoShowcaseSectionProps> = ({ heroContent
     }
   }, [])
 
-  const handleVideoToggle = () => {
-    if (videoRef.current) {
-      if (isVideoPlaying) {
-        videoRef.current.pause()
-      } else {
-        videoRef.current.play()
-        videoRef.current.muted = false
-      }
-      setIsVideoPlaying(!isVideoPlaying)
-    }
+  const handlePlayClick = () => {
+    setShowFullVideo(true)
+    setTimeout(() => {
+      videoRef.current?.play()
+      setIsVideoPlaying(true)
+    }, 100)
   }
 
   const enterFullscreen = async () => {
@@ -92,14 +94,6 @@ const VideoShowcaseSection: React.FC<VideoShowcaseSectionProps> = ({ heroContent
     }
   }
 
-  const handleVideoClick = (event: React.MouseEvent) => {
-    // Prevent the overlay click when clicking on video controls
-    if ((event.target as HTMLElement).closest('video')) {
-      return
-    }
-    handleVideoToggle()
-  }
-
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-5xl mx-auto">
@@ -111,65 +105,70 @@ const VideoShowcaseSection: React.FC<VideoShowcaseSectionProps> = ({ heroContent
             Watch a demonstration of Ulo Business Profile in action
           </p>
         </div>
-        
         <div
           ref={containerRef}
           className={`relative bg-gray-900 rounded-2xl overflow-hidden aspect-video mx-auto ${
             isFullscreen ? 'fixed inset-0 z-50 rounded-none' : 'max-w-4xl'
           }`}
-          onDoubleClick={handleDoubleClick}
         >
-          <video
-            ref={videoRef}
-            className="w-full h-full object-cover"
-            autoPlay
-            muted
-            loop
-            controls
-            controlsList="nodownload"
-            onPlay={() => setIsVideoPlaying(true)}
-            onPause={() => setIsVideoPlaying(false)}
-            onDoubleClick={handleDoubleClick}
-            poster="/video-placeholder.jpg"
-          >
-            <source src={heroContent.videoUrl} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          {/* Show thumbnail preview until play is clicked */}
+          {!showFullVideo ? (
+            <>
+              <video
+                className="w-full h-full object-cover"
+                src={THUMBNAIL_URL}
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster="/video-placeholder.jpg"
+              />
+              {/* Pulsing Play Button */}
+              <button
+                type="button"
+                aria-label="Play full video"
+                className="absolute inset-0 flex items-center justify-center focus:outline-none"
+                onClick={handlePlayClick}
+                tabIndex={0}
+              >
+                <span className="relative flex items-center justify-center">
+                  <span className="absolute inline-flex h-24 w-24 rounded-full bg-primary/40 animate-ping duration-1000"></span>
+                  <span className="relative inline-flex h-20 w-20 rounded-full bg-primary shadow-lg flex items-center justify-center group hover:scale-105 transition-all opacity-70 ">
+                    <Play
+                      className="w-12 h-12 text-white ml-1 group-hover:scale-110 transition-transform"
+                      fill="currentColor"
+                    />
+                  </span>
+                </span>
+              </button>
+            </>
+          ) : (
+            <video
+              ref={videoRef}
+              className="w-full h-full object-cover"
+              src={heroContent.videoUrl}
+              autoPlay
+              muted={false}
+              loop
+              controls
+              controlsList="nodownload"
+              poster="/video-placeholder.jpg"
+              onPlay={() => setIsVideoPlaying(true)}
+              onPause={() => setIsVideoPlaying(false)}
+            />
+          )}
 
           {/* Gradient overlay - only show when not in fullscreen */}
           {!isFullscreen && (
             <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20 pointer-events-none"></div>
           )}
 
-          {/* Custom play/pause overlay - only show when video is paused and not in fullscreen */}
-          {!isVideoPlaying && !isFullscreen && (
-            <div
-              className="absolute inset-0 flex items-center justify-center cursor-pointer bg-black bg-opacity-30"
-              onClick={handleVideoClick}
-            >
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group hover:scale-105">
-                <Play
-                  className="w-8 h-8 text-gray-900 ml-1 group-hover:scale-110 transition-transform"
-                  fill="currentColor"
-                />
-              </div>
-            </div>
-          )}
-
           {/* Video description - only show when not in fullscreen */}
-          {!isFullscreen ||
-            (isVideoPlaying && (
-              <div className="absolute bottom-4 left-4 text-white pointer-events-none">
-                <p className="text-sm opacity-80">
-                  See how Ulo Business Profile works
-                </p>
-              </div>
-            ))}
-
-          {/* Fullscreen instructions - only show in fullscreen */}
-          {isFullscreen && (
-            <div className="absolute top-4 right-4 text-white bg-black bg-opacity-50 px-3 py-2 rounded text-sm pointer-events-none">
-              Press ESC or double-click to exit fullscreen
+          {!isFullscreen && (
+            <div className="absolute bottom-4 left-4 text-white pointer-events-none">
+              <p className="text-sm opacity-80">
+                See how Ulo Business Profile works
+              </p>
             </div>
           )}
         </div>
