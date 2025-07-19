@@ -70,7 +70,7 @@ const Header: React.FC = () => {
         <div ref={containerRef} className="hidden md:block mx-auto w-3/4">
           <div
             style={{
-              backgroundColor: `rgba(0, 0, 18, 0.85)`,
+              backgroundColor: `rgba(0, 0, 18, 0.1)`,
               boxShadow: `0 25px 50px -12px rgba(6, 3, 9, 0.2)`
             }}
             className="rounded-full backdrop-blur-xl transition-all duration-300  py-[6px] px-[54px]"
@@ -82,27 +82,30 @@ const Header: React.FC = () => {
               <nav className="hidden md:flex space-x-8 items-center ">
                 <Button
                   variant="ghost"
-                  className="text-sm text-white hover:text-black/70 hover:bg-white"
+                  className="text-sm text-black hover:text-black/70 hover:bg-white"
                 >
                   <Link to={'#'}>Products</Link>
                 </Button>
 
                 <Button
                   variant="ghost"
-                  className="text-sm text-white hover:text-black/70 hover:bg-white"
+                  className="text-sm text-black hover:text-black/70 hover:bg-white"
                 >
                   <Link to={'#'}>Solutions</Link>
                 </Button>
 
                 <Button
                   variant="ghost"
-                  className="text-sm text-white hover:text-black/70 hover:bg-white"
+                  className="text-sm text-black hover:text-black/70 hover:bg-white"
                 >
                   <Link to={'#'}>Resources</Link>
                 </Button>
               </nav>
               <div className="flex items-center space-x-4">
-                <Button variant="outline" className="text-sm px-6  ">
+                <Button
+                  variant="outline"
+                  className="text-sm px-6 bg-primary text-white hover:bg-white hover:text-primary "
+                >
                   Get started
                 </Button>
               </div>
