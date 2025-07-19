@@ -3,47 +3,57 @@ import React from 'react';
 const Footer: React.FC = () => {
   const footerSections = [
     {
-      title: "Ulo",
+      title: 'Links',
       links: [
-        { title: "About", href: "#" },
-        { title: "Products", href: "#" },
-        { title: "Privacy", href: "#" },
-        { title: "Terms", href: "#" }
+        { title: 'About', href: '#' },
+        { title: 'Products', href: '#' },
+        { title: 'Privacy', href: '#' },
+        { title: 'Terms', href: '#' }
       ]
     },
     {
-      title: "Business",
+      title: 'Business',
       links: [
-        { title: "Advertising", href: "#" },
-        { title: "Solutions", href: "#" },
-        { title: "How Search works", href: "#" }
+        { title: 'Advertising', href: '#' },
+        { title: 'Solutions', href: '#' },
+        { title: 'How Search works', href: '#' }
       ]
     },
     {
-      title: "Developers",
+      title: 'Developers',
       links: [
-        { title: "Ulo API", href: "#" },
-        { title: "Ulo Cloud", href: "#" },
-        { title: "Ulo Maps Platform", href: "#" }
+        { title: 'Ulo API', href: '#' },
+        { title: 'Ulo Cloud', href: '#' },
+        { title: 'Ulo Maps Platform', href: '#' }
       ]
     },
     {
-      title: "Help",
+      title: 'Help',
       links: [
-        { title: "Support", href: "#" },
-        { title: "Contact", href: "#" },
-        { title: "Community", href: "#" }
+        { title: 'Support', href: '#' },
+        { title: 'Contact', href: '#' },
+        { title: 'Community', href: '#' }
       ]
     }
-  ];
+  ]
 
   return (
     <footer className="bg-white border-t border-gray-200 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-5 gap-8">
+          <div className="grid">
+            <img src="/ulo-logo.png" alt="Ulo" className="h-20" />
+
+            <p className="text-sm text-gray-600">
+              Ulo is a search engine that helps you find what you're looking
+              for.
+            </p>
+          </div>
           {footerSections.map((section, index) => (
             <div key={index}>
-              <h4 className="font-medium text-gray-900 mb-4">{section.title}</h4>
+              <h4 className="font-medium text-gray-900 mb-4">
+                {section.title}
+              </h4>
               <ul className="space-y-2 text-sm text-gray-600">
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
@@ -61,7 +71,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
     </footer>
-  );
+  )
 };
 
 export default Footer;

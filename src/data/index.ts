@@ -17,7 +17,7 @@ export const businessSlides: BusinessSlide[] = [
     description:
       'Your Business Profile lets you connect with customers across Ulo Search and Maps. When people search for businesses like yours, make sure they find your business.',
     videoUrl:
-      'https://res.cloudinary.com/dfcsaxtru/video/upload/v1752584143/HOST_XPE-_ptgjes.mp4'
+      'https://res.cloudinary.com/dfcsaxtru/video/upload/v1752930081/HOST_XPE-_zjlufk.mp4'
   },
   {
     id: 1,
@@ -25,7 +25,7 @@ export const businessSlides: BusinessSlide[] = [
     description:
       'Customers are more likely to choose a business with photos, reviews, and up-to-date information. Your Business Profile helps you put your best foot forward.',
     videoUrl:
-      'https://res.cloudinary.com/dfcsaxtru/video/upload/v1752586634/XPERIENCE_REELS_lj4ve6.mp4'
+      'https://res.cloudinary.com/dfcsaxtru/video/upload/v1752930082/XPERIENCE_REELS_zg6mrp.mp4'
   },
   {
     id: 2,

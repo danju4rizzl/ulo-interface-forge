@@ -96,7 +96,7 @@ const VideoShowcaseSection: React.FC<VideoShowcaseSectionProps> = ({
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-20xl   mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-normal text-gray-900 mb-4">
             See How It Works
@@ -132,10 +132,10 @@ const VideoShowcaseSection: React.FC<VideoShowcaseSectionProps> = ({
                 tabIndex={0}
               >
                 <span className="relative flex items-center justify-center">
-                  <span className="absolute inline-flex h-24 w-24 rounded-full bg-primary/40 animate-ping duration-1000"></span>
-                  <span className="relative inline-flex h-20 w-20 rounded-full bg-primary shadow-lg flex items-center justify-center group hover:scale-105 transition-all opacity-70 ">
+                  <span className="absolute inline-flex h-24 w-24 rounded-full bg-white animate-ping duration-1000"></span>
+                  <span className="relative inline-flex h-20 w-20 rounded-full bg-white shadow-lg flex items-center justify-center group hover:scale-105 transition-all opacity-80 ">
                     <Play
-                      className="w-12 h-12 text-white ml-1 group-hover:scale-110 transition-transform"
+                      className="w-12 h-12 text-primary ml-1 group-hover:scale-110 transition-transform"
                       fill="currentColor"
                     />
                   </span>
