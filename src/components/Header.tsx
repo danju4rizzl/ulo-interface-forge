@@ -157,7 +157,7 @@ const Header: React.FC = () => {
           >
             <div className="flex justify-between items-center h-12">
               <Link to={'/'}>
-                <img src="/ulo-log-alt.png" alt="Ulo" className="h-6" />
+                <img src="/ulo-logo.png" alt="Ulo" className="h-6" />
               </Link>
               <Button
                 variant="ghost"
