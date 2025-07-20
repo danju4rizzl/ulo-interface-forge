@@ -48,7 +48,7 @@ export interface FlippedSlide {
   imageUrl?: string
   component?: React.ReactNode
   // SpotlightCard specific properties
-  icon?: React.ReactNode
+  icon?: string | React.ReactNode
   spotlightTitle?: string
   spotlightDescription?: string
 }

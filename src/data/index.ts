@@ -1,6 +1,4 @@
-import React from 'react'
 import { HeroContent, BusinessSlide, FlippedSlide } from '@/types'
-import { Car, Plane, Shield, Leaf, Shirt, ChefHat, User } from 'lucide-react'
 
 export const heroContent: HeroContent = {
   title: 'Stand out on Ulo with a free Business Profile',
@@ -48,68 +46,72 @@ export const businessSlides: BusinessSlide[] = [
 export const flippedSlides: FlippedSlide[] = [
   {
     id: 0,
-    title: 'Car Rental',
-    description: 'Airport Pick-up and Drop-off or Personal Ride.',
+    title: 'CAR RENTAL',
+    description:
+      'Professional chauffeur services available 24/7. Choose from luxury sedans, SUVs, or executive vehicles. Perfect for airport transfers, business meetings, or special occasions.',
     contentType: 'component',
-    icon: React.createElement(Car, { size: 48 }),
-    spotlightTitle: 'CAR RENTAL',
+    icon: '/icons/CAR.png',
+    spotlightTitle: 'Airport Pick-up and Drop-off or Personal Ride',
     spotlightDescription: 'Airport Pick-up and Drop-off or Personal Ride.'
   },
   {
     id: 1,
-    title: 'Helicopter Rental',
-    description: 'Luxury transfers and scenic aerial tours.',
+    title: 'HELICOPTER',
+    description:
+      'Experience breathtaking aerial views with our certified pilots. Ideal for special events, scenic tours, or VIP transportation. All flights include safety briefings and professional service.',
     contentType: 'component',
-    icon: React.createElement(Plane, { size: 48 }),
-    spotlightTitle: 'HELICOPTER RENTAL',
+    icon: '/icons/HELICOPTER.png',
+    spotlightTitle: 'Luxury transfers and scenic aerial tours',
     spotlightDescription: 'Luxury transfers and scenic aerial tours.'
   },
   {
     id: 2,
-    title: 'Personal Security',
-    description: 'Trained escorts for private safety and peace of mind.',
+    title: 'SECURITY',
+    description:
+      'Highly trained security professionals with extensive backgrounds in personal protection. Discreet, professional, and reliable service for high-profile individuals and events.',
     contentType: 'component',
-    icon: React.createElement(Shield, { size: 48 }),
-    spotlightTitle: 'PERSONAL SECURITY',
-    spotlightDescription:
-      'Trained escorts for private safety and peace of mind.'
+    icon: '/icons/SECURITY.png',
+    spotlightTitle: 'Professional personal protection and security',
+    spotlightDescription: 'Professional personal protection and security.'
   },
   {
     id: 3,
-    title: 'Herbal Care & Spa',
-    description: 'Traditional wellness treatments rooted in African healing.',
+    title: 'HERBAL CARE',
+    description:
+      'Authentic African wellness treatments using traditional herbs and healing practices. Our certified therapists provide holistic care for mind, body, and spirit rejuvenation.',
     contentType: 'component',
-    icon: React.createElement(Leaf, { size: 48 }),
-    spotlightTitle: 'HERBAL CARE & SPA',
-    spotlightDescription:
-      'Traditional wellness treatments rooted in African healing.'
+    icon: '/icons/HEBARL CARE.png',
+    spotlightTitle: 'Traditional African wellness and healing treatments',
+    spotlightDescription: 'Traditional African wellness and healing treatments.'
   },
   {
     id: 4,
-    title: 'Laundry & Dry Cleaning',
-    description: 'Premium garment care with swift pick-up and delivery.',
+    title: 'LAUNDRY',
+    description:
+      'Premium garment care using eco-friendly processes. Same-day service available with convenient pickup and delivery. Specialized care for delicate fabrics and designer clothing.',
     contentType: 'component',
-    icon: React.createElement(Shirt, { size: 48 }),
-    spotlightTitle: 'LAUNDRY & DRY CLEANING',
-    spotlightDescription:
-      'Premium garment care with swift pick-up and delivery.'
+    icon: '/icons/LAUNDARY.png',
+    spotlightTitle: 'Premium garment care and cleaning services',
+    spotlightDescription: 'Premium garment care and cleaning services.'
   },
   {
     id: 5,
-    title: 'Continental Chef',
-    description: 'On-demand gourmet meals prepared by certified chefs.',
+    title: 'CHEF',
+    description:
+      'World-class chefs trained in international cuisine. Custom menu planning, dietary accommodations, and presentation that exceeds expectations for any occasion.',
     contentType: 'component',
-    icon: React.createElement(ChefHat, { size: 48 }),
-    spotlightTitle: 'CONTINENTAL CHEF',
-    spotlightDescription: 'On-demand gourmet meals prepared by certified chefs.'
+    icon: '/icons/CHEF.png',
+    spotlightTitle: 'Professional culinary services for any occasion',
+    spotlightDescription: 'Professional culinary services for any occasion.'
   },
   {
     id: 6,
-    title: 'Africa Yoga Instructor',
-    description: 'Guided yoga sessions with a touch of African soul.',
+    title: 'YOGA',
+    description:
+      'Certified yoga instructors specializing in African-inspired practices. Sessions include meditation, breathwork, and movement that connects you with ancient wisdom and modern wellness.',
     contentType: 'component',
-    icon: React.createElement(User, { size: 48 }),
-    spotlightTitle: 'AFRICA YOGA INSTRUCTOR',
-    spotlightDescription: 'Guided yoga sessions with a touch of African soul.'
+    icon: '/icons/YOGA.png',
+    spotlightTitle: 'Personalized yoga and wellness sessions',
+    spotlightDescription: 'Personalized yoga and wellness sessions.'
   }
 ]
