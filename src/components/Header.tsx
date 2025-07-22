@@ -105,9 +105,9 @@ const Header: React.FC = () => {
               <div className="flex items-center space-x-8">
                 <Link to={'/'}>
                   <img
-                    src="/ulo-log-alt.png"
+                    src="/ulo-icon.png"
                     alt="Logo of Ulo"
-                    className="h-6"
+                    className="h-10 hover:scale-110 transition-transform"
                   />
                 </Link>
               </div>
