@@ -26,9 +26,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroContent }) => {
           text="Don’t just visit Africa"
           bottomText="Connect with it.
 "
-          delay={5}
+          delay={150}
           animateBy="words"
-          direction="bottom"
+          direction="top"
           onAnimationComplete={handleAnimationComplete}
           className="text-6xl md:text-7xl font-normal text-gray-900 mb-8 leading-tight"
         />

@@ -3,11 +3,31 @@ import { gsap } from 'gsap';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom'
+import { smoothScrollToSection } from '@/lib/utils'
 const Header: React.FC = () => {
   const headerRef = useRef<HTMLElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  // Navigation handler for smooth scrolling
+  const handleNavClick = (sectionId: string) => {
+    smoothScrollToSection(sectionId)
+    // Close mobile menu if open with animation
+    if (isMobileMenuOpen) {
+      const menu = mobileMenuRef.current
+      if (menu) {
+        gsap.to(menu, {
+          x: '100%',
+          duration: 0.5,
+          ease: 'power2.out',
+          onComplete: () => setIsMobileMenuOpen(false)
+        })
+      } else {
+        setIsMobileMenuOpen(false)
+      }
+    }
+  }
   // Improved mobile menu toggler for correct open/close animation
   const toggleMobileMenu = () => {
     if (!isMobileMenuOpen) {
@@ -114,23 +134,26 @@ const Header: React.FC = () => {
               <nav className="hidden md:flex space-x-8 items-center ">
                 <Button
                   variant="ghost"
-                  className="text-sm text-black hover:text-black/70 hover:bg-white"
+                  className="text-sm text-black hover:text-black/70 hover:bg-white cursor-pointer"
+                  onClick={() => handleNavClick('business-section')}
                 >
-                  <Link to={'#'}>Products</Link>
+                  Solutions
                 </Button>
 
                 <Button
                   variant="ghost"
-                  className="text-sm text-black hover:text-black/70 hover:bg-white"
+                  className="text-sm text-black hover:text-black/70 hover:bg-white cursor-pointer"
+                  onClick={() => handleNavClick('services-section')}
                 >
-                  <Link to={'#'}>Solutions</Link>
+                  Products
                 </Button>
 
                 <Button
                   variant="ghost"
-                  className="text-sm text-black hover:text-black/70 hover:bg-white"
+                  className="text-sm text-black hover:text-black/70 hover:bg-white cursor-pointer"
+                  onClick={() => handleNavClick('community-section')}
                 >
-                  <Link to={'#'}>Resources</Link>
+                  Community
                 </Button>
               </nav>
               <div className="flex items-center space-x-4">
@@ -199,24 +222,24 @@ const Header: React.FC = () => {
             </div>
 
             <nav className="space-y-6">
-              <a
-                href="#"
-                className="block text-black/70 hover:text-black text-lg transition-colors"
+              <button
+                onClick={() => handleNavClick('services-section')}
+                className="block text-black/70 hover:text-black text-lg transition-colors text-left w-full"
               >
                 Products
-              </a>
-              <a
-                href="#"
-                className="block text-black/70 hover:text-black text-lg transition-colors"
+              </button>
+              <button
+                onClick={() => handleNavClick('business-section')}
+                className="block text-black/70 hover:text-black text-lg transition-colors text-left w-full"
               >
                 Solutions
-              </a>
-              <a
-                href="#"
-                className="block text-black/70 hover:text-black text-lg transition-colors"
+              </button>
+              <button
+                onClick={() => handleNavClick('community-section')}
+                className="block text-black/70 hover:text-black text-lg transition-colors text-left w-full"
               >
-                Resources
-              </a>
+                Community
+              </button>
             </nav>
 
             <div className="mt-8 space-y-4">
