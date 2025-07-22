@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+
+const PeopleConnections = React.lazy(() => import('./PeopleConnections'))
 
 const AnalyticsSection: React.FC = () => {
   const analyticsStats = [
@@ -16,8 +17,8 @@ const AnalyticsSection: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="text-4xl font-normal text-gray-900 mb-6">
-              50% of consumers who conducted a local search on their
-              smartphone visited a store within a day
+              50% of consumers who conducted a local search on their smartphone
+              visited a store within a day
             </h2>
             <p className="text-lg text-gray-600 mb-8">
               Source: Think with Ulo, "How Mobile has Changed What It Means to
@@ -28,31 +29,23 @@ const AnalyticsSection: React.FC = () => {
             </Button>
           </div>
           <div>
-            <Card className="bg-white shadow-lg border-0 shadow-gray-200/50">
-              <CardContent className="p-6">
-                <h3 className="text-lg font-medium text-gray-900 mb-4">
-                  Performance insights
-                </h3>
-                <div className="space-y-4">
-                  {analyticsStats.map((stat, index) => (
-                    <div key={index} className="flex justify-between items-center">
-                      <span className="text-gray-600">{stat.label}</span>
-                      <span className="font-medium text-gray-900">{stat.value}</span>
-                    </div>
-                  ))}
+            {/* PeopleConnections visualization */}
+            <React.Suspense
+              fallback={
+                <div className="flex items-center justify-center h-[260px] w-full">
+                  <span className="text-blue-500 animate-pulse text-lg font-medium">
+                    Loading connections...
+                  </span>
                 </div>
-                <div className="mt-6 h-32 bg-blue-50 rounded flex items-end justify-center">
-                  <div className="text-blue-600 text-sm">
-                    Chart visualization
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+              }
+            >
+              {typeof window !== 'undefined' && <PeopleConnections />}
+            </React.Suspense>
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 };
 
 export default AnalyticsSection;

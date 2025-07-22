@@ -95,7 +95,10 @@ const VideoShowcaseSection: React.FC<VideoShowcaseSectionProps> = ({
   }
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <section
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50"
+      id="video-section"
+    >
       <div className="max-w-20xl   mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-normal text-gray-900 mb-4">
