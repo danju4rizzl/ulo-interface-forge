@@ -87,7 +87,7 @@ const AncillaryServicesShowcase: React.FC<AncillaryServicesShowcaseProps> = ({
   // Progress bar animation and auto-advance (10 seconds)
   useEffect(() => {
     let startTimestamp: number | null = null
-    const duration = 10000 // 10 seconds
+    const duration = 3000 // 3 seconds
 
     function animateProgress(timestamp: number) {
       if (isPaused) return
@@ -141,7 +141,7 @@ const AncillaryServicesShowcase: React.FC<AncillaryServicesShowcaseProps> = ({
       <div className="flex flex-col items-center">
         <div className="w-full max-w-[400px] h-[200px] sm:h-[240px] md:h-[280px] mb-4 sm:mb-6">
           <SpotlightCard
-            className="w-full h-full flex flex-col items-center justify-center text-center custom-spotlight-card animate-fade-in"
+            className="w-full h-full flex flex-col items-center justify-center text-center custom-spotlight-card"
             spotlightColor="rgba(0, 229, 255, 0.2)"
           >
             {currentSlide.icon && (
@@ -150,7 +150,7 @@ const AncillaryServicesShowcase: React.FC<AncillaryServicesShowcaseProps> = ({
                   <img
                     src={currentSlide.icon}
                     alt={currentSlide.title}
-                    className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 object-contain"
+                    className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 object-contain "
                   />
                 ) : (
                   <div className="text-blue-400 text-4xl sm:text-5xl md:text-6xl">
@@ -164,7 +164,6 @@ const AncillaryServicesShowcase: React.FC<AncillaryServicesShowcaseProps> = ({
             </div>
           </SpotlightCard>
         </div>
-
         {/* Navigation arrows */}
         <div className="flex items-center space-x-3 sm:space-x-4">
           <button
@@ -205,9 +204,8 @@ const AncillaryServicesShowcase: React.FC<AncillaryServicesShowcaseProps> = ({
           <div className="relative flex justify-center order-1 lg:order-1">
             <div
               key={activeSlide}
-              className={`transition-opacity duration-500 ease-in-out w-full max-w-md ${
-                isTransitioning ? 'opacity-0' : 'opacity-100'
-              }`}
+              className={`w-full max-w-md 
+                transition-transform duration-500 ease-in-out`}
             >
               {renderContent()}
             </div>
