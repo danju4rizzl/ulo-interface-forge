@@ -20,9 +20,11 @@ const CTASection: React.FC = () => {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto text-center">
-        <div className="w-20 h-20 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6">
-          <div className="w-10 h-10 bg-white rounded-full"></div>
-        </div>
+        <img
+          src="/ucap-logo.png"
+          alt="UCAP program logo"
+          className="h-28 mb-3 mx-auto"
+        />
 
         <div className="text-center mb-12">
           <h2 className="text-4xl font-normal text-gray-900 mb-4">
