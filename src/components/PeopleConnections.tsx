@@ -332,11 +332,11 @@ const PeopleConnections: React.FC = () => {
           damping: 10
         }
       }}
-      onHoverStart={() => handleNodeHover(index)}
+      onHoverStart={() => handleNodeHover(null)}
       onHoverEnd={() => handleNodeHover(null)}
     >
       <motion.div
-        className="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg"
+        className="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-lg "
         animate={{
           boxShadow:
             hoveredNode === index
@@ -348,7 +348,7 @@ const PeopleConnections: React.FC = () => {
         <img
           src={profile.img}
           alt={profile.name}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover z-20"
           loading="lazy"
         />
         <motion.div
@@ -394,10 +394,15 @@ const PeopleConnections: React.FC = () => {
 
       <div
         ref={containerRef}
-        className="relative w-full h-auto max-w-[480px] max-h-[340px] rounded-xl shadow-lg bg-blue-50 border border-blue-100 overflow-hidden"
+        className="relative w-full h-auto max-w-[480px] max-h-[340px]  overflow-hidden"
         style={{
           width: size.width,
-          height: size.height
+          height: size.height,
+          backgroundImage: ' url(/ulo-icon.png)',
+          backgroundSize: 'contain',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center center',
+          backgroundBlendMode: 'multiply'
         }}
         aria-label="People connections visualization"
       >
