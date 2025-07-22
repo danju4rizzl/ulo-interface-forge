@@ -17,15 +17,15 @@ const AnalyticsSection: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="text-4xl font-normal text-gray-900 mb-6">
-              50% of consumers who conducted a local search on their smartphone
-              visited a store within a day
+              Join our community in shaping the future of Africa hospitality.
             </h2>
             <p className="text-lg text-gray-600 mb-8">
-              Source: Think with Ulo, "How Mobile has Changed What It Means to
-              Shop Local," May 2019.
+              Become part of our early community and gain access to our
+              Intercontinental Conferences, Exclusive perks, Quarterly Tea
+              Meetings, Festivals, and all behind-the-scenes updates.
             </p>
             <Button className="bg-primary hover:bg-primary/90 text-white px-8 py-3">
-              Get started
+              Join the Ulô Circle →
             </Button>
           </div>
           <div>

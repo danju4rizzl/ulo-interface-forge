@@ -102,10 +102,10 @@ const VideoShowcaseSection: React.FC<VideoShowcaseSectionProps> = ({
       <div className="max-w-20xl   mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-normal text-gray-900 mb-4">
-            See How It Works
+            This is Africa, See for Yourself
           </h2>
           <p className="text-lg text-gray-600">
-            Watch a demonstration of Ulo Business Profile in action
+            Not the Africa of postcards, but the one you’ve never experienced.
           </p>
         </div>
         <div

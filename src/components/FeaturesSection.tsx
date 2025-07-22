@@ -5,23 +5,26 @@ const FeaturesSection: React.FC = () => {
   const features = [
     {
       icon: <Users className="w-8 h-8 text-blue-600" />,
-      title: "Connect with customers",
-      description: "Help people discover your business and engage with your customers.",
-      bgColor: "bg-blue-100"
+      title: 'Multi-Payment Enable',
+      description:
+        'Pay in your currency, earn in local African currencies — no stress, just seamless transactions across borders.',
+      bgColor: 'bg-blue-100'
     },
     {
       icon: <TrendingUp className="w-8 h-8 text-yellow-600" />,
-      title: "Share what makes you special",
-      description: "Upload photos, respond to reviews, post updates, and more.",
-      bgColor: "bg-yellow-100"
+      title: 'Xperience Reels',
+      description:
+        'See real guest videos. Feel the atmosphere, energy, and stories — before you even book.',
+      bgColor: 'bg-yellow-100'
     },
     {
       icon: <Shield className="w-8 h-8 text-green-600" />,
-      title: "Turn viewers into customers",
-      description: "Get the insights you need to keep customers coming back.",
-      bgColor: "bg-green-100"
+      title: 'Local Tour Guides',
+      description:
+        'Connect and explore with trusted Ulô Associates — navigate with ease and feel at home through our Guest Handbook.',
+      bgColor: 'bg-green-100'
     }
-  ];
+  ]
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8">

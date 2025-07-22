@@ -80,7 +80,7 @@ const BusinessShowcaseSection: React.FC<BusinessShowcaseSectionProps> = ({
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-normal text-gray-900 mb-4">
-            Turn a Ulo search into a visit to your business
+            Here’s How Ulô Works for You
           </h2>
         </div>
 

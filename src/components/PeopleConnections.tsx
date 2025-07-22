@@ -398,7 +398,7 @@ const PeopleConnections: React.FC = () => {
         style={{
           width: size.width,
           height: size.height,
-          backgroundImage: ' url(/ulo-icon.png)',
+          backgroundImage: ' url(/faded-bg.png)',
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center center',

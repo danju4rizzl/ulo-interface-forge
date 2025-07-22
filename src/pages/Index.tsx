@@ -30,7 +30,7 @@ const Index = () => {
 
         <AncillaryServicesShowcase
           slides={flippedSlides}
-          sectionTitle="Ancillary Services"
+          sectionTitle="Go Beyond the Stay"
         />
 
         <AnalyticsSection />
