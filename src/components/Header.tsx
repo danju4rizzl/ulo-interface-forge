@@ -136,7 +136,7 @@ const Header: React.FC = () => {
               <div className="flex items-center space-x-4">
                 <Button
                   variant="outline"
-                  className="text-sm px-6 bg-primary text-white hover:bg-white hover:text-primary border-none "
+                  className="text-sm px-6 bg-primary text-white hover:bg-white hover:text-primary border-none transition-all duration-500 ease-in-out"
                 >
                   Get started
                 </Button>
@@ -220,12 +220,6 @@ const Header: React.FC = () => {
             </nav>
 
             <div className="mt-8 space-y-4">
-              {/* <Button
-                variant="ghost"
-                className="w-full text-black/70 hover:text-black hover:bg-black/10"
-              >
-                Sign in
-              </Button> */}
               <Button className="w-full bg-black text-white hover:bg-black/90">
                 Get started
               </Button>

@@ -20,11 +20,11 @@ const handleScrollToVideo = () => {
 
 const HeroSection: React.FC<HeroSectionProps> = ({ heroContent }) => {
   return (
-    <section className="py-44 px-4 sm:px-6 lg:px-8">
+    <section className="py-36  px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto text-center">
         <BlurText
-          text="Booking Made Simple."
-          bottomText="Hospitality Made Real"
+          text="Africa’s Stay Experience"
+          bottomText="Trusted and Simplified"
           delay={5}
           animateBy="words"
           direction="bottom"
