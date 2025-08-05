@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Plane, Home, User } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -22,7 +23,7 @@ const ScrollDotsSection: React.FC = () => {
         scrub: 1,
         onUpdate: (self) => {
           const progress = self.progress
-          const maxY = 140 // Total distance the dot can travel (7 gray dots * 40px spacing)
+          const maxY = 135 // Total distance the dot can travel (3 gaps * 40px spacing + adjustment for icon alignment)
           gsap.to(blueDot, {
             y: progress * maxY,
             duration: 0.1,
@@ -43,26 +44,41 @@ const ScrollDotsSection: React.FC = () => {
       className="min-h-52 mt-44 flex items-center justify-center py-20"
     >
       <div className="relative">
-        {/* Gray dots path */}
+        {/* Dots path with icons */}
         <div className="flex flex-col items-center space-y-10">
-          {Array.from({ length: 4 }).map((_, index) => (
-            <div
+          {/* First dot - Airplane icon */}
+          <div className="flex items-center justify-center w-8 h-8">
+            <img src="/icons/PLANE.png" alt="" className=" z-50" />
+          </div>
+
+          {/* Middle dots - Plain gray dots */}
+          {Array.from({ length: 1 }).map((_, index) => (
+            <img
               key={index}
-              className="w-2 h-2 bg-gray-400 rounded-full opacity-60"
+              src="/ulo-icon.png"
+              className="w-[16px] h-[22px] z-50"
             />
           ))}
+
+          {/* Last dot - Home icon */}
+          <div className="flex items-center justify-center w-8 h-8">
+            <img src="/icons/HOME.png" alt="" className="z-50" />
+            {/* <Home className="w-4 h-4 text-gray-400 opacity-60" /> */}
+          </div>
         </div>
 
-        {/* Blue moving dot */}
+        {/* Blue moving dot with human icon */}
         <div
           ref={blueDotRef}
-          className="absolute top-0 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-primary rounded-full shadow-lg z-50"
+          className="absolute top-0 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary rounded-full shadow-lg z-50 flex items-center justify-center"
           style={{ transformOrigin: 'center' }}
-        />
+        >
+          <User className="w-4 h-4 text-white" />
+        </div>
 
         {/* Dotted line connecting the dots */}
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-px h-full">
-          <div className="w-full h-full border-l-2 border-dashed border-gray-300 opacity-50" />
+        <div className="absolute top-0 left-[15.5px] transform -translate-x-1/2 w-px h-full">
+          <div className="w-full h-full border-l-2 border-dashed border-gray-300 opacity-50 -z-10" />
         </div>
       </div>
     </div>
