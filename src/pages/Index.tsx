@@ -17,7 +17,7 @@ const Index = () => {
     <div className="min-h-screen bg-white">
       <Header />
 
-      <div className="pt-24">
+      <div className="">
         <HeroSection heroContent={heroContent} />
 
         <VideoShowcaseSection heroContent={heroContent} />

@@ -3,7 +3,7 @@ import { HeroContent, BusinessSlide, FlippedSlide } from '@/types'
 export const heroContent: HeroContent = {
   title: 'Stand out on Ulo with a free Business Profile',
   description:
-    'Experience Africa like you belong — live in thoughtfully styled homes and let trusted local Associates guide you through culture, food, and everyday life',
+    'Experience Africa like you belong, stay in soulful homes and explore with trusted locals who help you live, not just visit.',
   videoUrl:
     'https://res.cloudinary.com/dfcsaxtru/video/upload/v1753103839/COMPRESSED_V2_fnuozs.mp4'
 }
