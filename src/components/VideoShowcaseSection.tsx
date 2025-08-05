@@ -99,7 +99,7 @@ const VideoShowcaseSection: React.FC<VideoShowcaseSectionProps> = ({
       className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50"
       id="video-section"
     >
-      <div className="max-w-20xl   mx-auto">
+      <div className="max-w-20xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-normal text-gray-900 mb-4">
             This is Africa, See for Yourself
@@ -110,8 +110,8 @@ const VideoShowcaseSection: React.FC<VideoShowcaseSectionProps> = ({
         </div>
         <div
           ref={containerRef}
-          className={`relative bg-gray-900 rounded-2xl overflow-hidden aspect-video mx-auto ${
-            isFullscreen ? 'fixed inset-0 z-50 rounded-none' : 'max-w-4xl'
+          className={`relative bg-gray-900 rounded-[50px] overflow-hidden aspect-video mx-auto ${
+            isFullscreen ? 'fixed inset-0 z-50 rounded-none' : 'max-w-7xl'
           }`}
         >
           {/* Show thumbnail preview until play is clicked */}
@@ -136,7 +136,7 @@ const VideoShowcaseSection: React.FC<VideoShowcaseSectionProps> = ({
               >
                 <span className="relative flex items-center justify-center">
                   <span className="absolute inline-flex h-24 w-24 rounded-full bg-white animate-ping duration-1000"></span>
-                  <span className="relative inline-flex h-20 w-20 rounded-full bg-white shadow-lg flex items-center justify-center group hover:scale-105 transition-all opacity-80 ">
+                  <span className="relative  h-20 w-20 rounded-full bg-white shadow-lg flex items-center justify-center group hover:scale-105 transition-all opacity-80 ">
                     <Play
                       className="w-12 h-12 text-primary ml-1 group-hover:scale-110 transition-transform"
                       fill="currentColor"
