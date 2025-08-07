@@ -45,9 +45,17 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroContent }) => {
       {/* Content */}
       <div className="relative z-20 max-w-5xl mx-auto mt-56  text-center">
         <BlurText
-          text="Don’t just visit Africa"
+          suffix={[
+            'Africa',
+            'Lagos',
+            'Cape Town',
+            'Nairobi',
+            'Kigali',
+            'Accra'
+          ]}
+          cycleInterval={3000}
+          text="Don’t just visit"
           bottomText="Connect with it."
-          delay={150}
           animateBy="words"
           direction="top"
           onAnimationComplete={handleAnimationComplete}

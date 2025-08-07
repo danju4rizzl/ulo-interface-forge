@@ -139,7 +139,7 @@ const AncillaryServicesShowcase: React.FC<AncillaryServicesShowcaseProps> = ({
         <div className="w-full max-w-[700px] h-[500px] sm:h-[240px] md:h-[580px] mb-4 sm:mb-6">
           <video className="w-full h-full" autoPlay loop muted playsInline>
             <source
-              src="https://res.cloudinary.com/dfcsaxtru/video/upload/v1754560140/ANCILARY_e9oowp.mp4"
+              src="https://res.cloudinary.com/dfcsaxtru/video/upload/v1754571912/ANCILARY_V2_gxpgwl.mp4"
               type="video/mp4"
             />
             Your browser does not support the video tag.
