@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import SpotlightCard from '@/components/SpotlightCard'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface ServiceSlide {
@@ -134,57 +133,17 @@ const AncillaryServicesShowcase: React.FC<AncillaryServicesShowcaseProps> = ({
     }
   }, [])
 
-  const renderContent = () => {
-    const currentSlide = slides[activeSlide]
-
+  const renderVideoContent = () => {
     return (
       <div className="flex flex-col items-center">
-        <div className="w-full max-w-[400px] h-[200px] sm:h-[240px] md:h-[280px] mb-4 sm:mb-6">
-          <SpotlightCard
-            className="w-full h-full flex flex-col items-center justify-center text-center custom-spotlight-card"
-            spotlightColor="rgba(0, 229, 255, 0.2)"
-          >
-            {currentSlide.icon && (
-              <div className="mb-3 sm:mb-4 md:mb-6">
-                {typeof currentSlide.icon === 'string' ? (
-                  <img
-                    src={currentSlide.icon}
-                    alt={currentSlide.title}
-                    className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 object-contain "
-                  />
-                ) : (
-                  <div className="text-blue-400 text-4xl sm:text-5xl md:text-6xl">
-                    {currentSlide.icon}
-                  </div>
-                )}
-              </div>
-            )}
-            <div className="text-gray-400 text-xs sm:text-sm leading-relaxed max-w-xs text-center px-2 sm:px-4">
-              <p>{currentSlide.spotlightTitle}</p>
-            </div>
-          </SpotlightCard>
-        </div>
-        {/* Navigation arrows */}
-        <div className="flex items-center space-x-3 sm:space-x-4">
-          <button
-            onClick={() =>
-              handleSlideChange(
-                (activeSlide - 1 + slides.length) % slides.length,
-                true
-              )
-            }
-            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors touch-manipulation"
-          >
-            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
-          </button>
-          <button
-            onClick={() =>
-              handleSlideChange((activeSlide + 1) % slides.length, true)
-            }
-            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors touch-manipulation"
-          >
-            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
-          </button>
+        <div className="w-full max-w-[700px] h-[500px] sm:h-[240px] md:h-[580px] mb-4 sm:mb-6">
+          <video className="w-full h-full" autoPlay loop muted playsInline>
+            <source
+              src="https://res.cloudinary.com/dfcsaxtru/video/upload/v1754560140/ANCILARY_e9oowp.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     )
@@ -196,16 +155,6 @@ const AncillaryServicesShowcase: React.FC<AncillaryServicesShowcaseProps> = ({
       id="services-section"
     >
       <div className="max-w-7xl mx-auto">
-        {/* <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-normal text-gray-900 mb-4">
-            {sectionTitle}
-          </h2>
-          <p className="text-lg sm:text-xl lg:text-2xl text-gray-600">
-            Add ease, thrill, and local flavor to your journey — with trusted
-            services that take your African experience further.
-          </p>
-        </div> */}
-
         <div className="max-w-20xl   mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-normal text-gray-900 mb-4">
@@ -219,15 +168,9 @@ const AncillaryServicesShowcase: React.FC<AncillaryServicesShowcaseProps> = ({
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
-          {/* Left side - SpotlightCard with navigation */}
+          {/* Left side - Video */}
           <div className="relative flex justify-center order-1 lg:order-1">
-            <div
-              key={activeSlide}
-              className={`w-full max-w-md 
-                transition-transform duration-500 ease-in-out`}
-            >
-              {renderContent()}
-            </div>
+            <div className="w-full max-w-md">{renderVideoContent()}</div>
           </div>
 
           {/* Right side - Horizontal slider for text content */}
@@ -265,6 +208,28 @@ const AncillaryServicesShowcase: React.FC<AncillaryServicesShowcaseProps> = ({
                   </div>
                 </div>
               ))}
+            </div>
+            {/* Navigation arrows - positioned outside the sliding container */}
+            <div className="flex items-center space-x-3 sm:space-x-4 mt-2 px-2 sm:px-4">
+              <button
+                onClick={() =>
+                  handleSlideChange(
+                    (activeSlide - 1 + slides.length) % slides.length,
+                    true
+                  )
+                }
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors touch-manipulation"
+              >
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
+              </button>
+              <button
+                onClick={() =>
+                  handleSlideChange((activeSlide + 1) % slides.length, true)
+                }
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors touch-manipulation"
+              >
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
+              </button>
             </div>
           </div>
         </div>
