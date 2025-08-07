@@ -48,7 +48,7 @@ const ScrollDotsSection: React.FC = () => {
         <div className="flex flex-col items-center space-y-10">
           {/* First dot - Airplane icon */}
           <div className="flex items-center justify-center w-8 h-8">
-            <img src="/icons/PLANE.png" alt="" className=" z-50 rotate-45" />
+            <img src="/icons/PLANE.png" alt="" className=" z-50" />
           </div>
 
           {/* Middle dots - Plain gray dots */}
