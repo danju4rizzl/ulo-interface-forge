@@ -49,9 +49,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroContent }) => {
             'Africa',
             'Lagos',
             'Cape Town',
+            'Accra',
             'Nairobi',
-            'Kigali',
-            'Accra'
+            'Kigali'
           ]}
           cycleInterval={3000}
           text="Don’t just visit"

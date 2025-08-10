@@ -57,9 +57,11 @@ const BlurText: React.FC<BlurTextProps> = ({
   const [currentsuffixIndex, setCurrentsuffixIndex] = useState(0)
   const [initialAnimationComplete, setInitialAnimationComplete] =
     useState(false)
-  const [isTransitioning, setIsTransitioning] = useState(false)
+  // Crossfade state to avoid flicker between suffix transitions
+  const [prevSuffixIndex, setPrevSuffixIndex] = useState<number | null>(null)
   const ref = useRef<HTMLDivElement>(null)
   const cycleTimerRef = useRef<NodeJS.Timeout | null>(null)
+  const crossfadeTimerRef = useRef<NodeJS.Timeout | null>(null)
 
   // Split text into prefix and suffix parts for separate animation
   const prefixElements = useMemo(() => {
@@ -78,6 +80,18 @@ const BlurText: React.FC<BlurTextProps> = ({
       ? currentsuffixText.split(' ')
       : currentsuffixText.split('')
   }, [currentsuffixText, animateBy])
+
+  const prevSuffixText = useMemo(() => {
+    if (prevSuffixIndex === null || !suffix || suffix.length === 0) return ''
+    return suffix[prevSuffixIndex]
+  }, [prevSuffixIndex, suffix])
+
+  const prevSuffixElements = useMemo(() => {
+    if (!prevSuffixText) return []
+    return animateBy === 'words'
+      ? prevSuffixText.split(' ')
+      : prevSuffixText.split('')
+  }, [prevSuffixText, animateBy])
 
   useEffect(() => {
     if (!ref.current) return
@@ -106,17 +120,26 @@ const BlurText: React.FC<BlurTextProps> = ({
   useEffect(() => {
     if (!suffix || suffix.length <= 1 || !initialAnimationComplete) return
 
+    const crossfadeMs = 600
+
     const startCycling = () => {
       cycleTimerRef.current = setTimeout(() => {
-        setIsTransitioning(true)
+        setCurrentsuffixIndex((prevIndex) => {
+          // Keep previous index for crossfade-out
+          setPrevSuffixIndex(prevIndex)
 
-        // After blur transition, change the text
-        setTimeout(() => {
-          setCurrentsuffixIndex((prevIndex) => (prevIndex + 1) % suffix.length)
-          setIsTransitioning(false)
-        }, 300) // Half of the blur transition duration
+          // Schedule removal of previous after crossfade completes
+          if (crossfadeTimerRef.current) clearTimeout(crossfadeTimerRef.current)
+          crossfadeTimerRef.current = setTimeout(() => {
+            setPrevSuffixIndex(null)
+          }, crossfadeMs)
 
-        startCycling() // Continue cycling
+          const next = (prevIndex + 1) % suffix.length
+          return next
+        })
+
+        // Continue cycling
+        startCycling()
       }, cycleInterval)
     }
 
@@ -126,6 +149,10 @@ const BlurText: React.FC<BlurTextProps> = ({
       if (cycleTimerRef.current) {
         clearTimeout(cycleTimerRef.current)
         cycleTimerRef.current = null
+      }
+      if (crossfadeTimerRef.current) {
+        clearTimeout(crossfadeTimerRef.current)
+        crossfadeTimerRef.current = null
       }
     }
   }, [suffix, cycleInterval, initialAnimationComplete])
@@ -169,14 +196,8 @@ const BlurText: React.FC<BlurTextProps> = ({
     stepCount === 1 ? 0 : i / (stepCount - 1)
   )
 
-  // Animation states for suffix cycling
-  const suffixFromSnapshot = isTransitioning
-    ? { filter: 'blur(10px)', opacity: 0, y: 0 }
-    : fromSnapshot
-
-  const suffixToSnapshots = isTransitioning
-    ? [{ filter: 'blur(0px)', opacity: 1, y: 0 }]
-    : toSnapshots
+  // Crossfade duration for cycling between suffix texts (in seconds)
+  const crossfadeDurationSec = 0.6
 
   return (
     <div
@@ -246,46 +267,81 @@ const BlurText: React.FC<BlurTextProps> = ({
           </motion.span>
         )}
 
-        {/* Render suffix text (with cycling blur animation after initial load) */}
-        {suffixElements.map((segment: string, index: number) => {
-          const animateKeyframes = buildKeyframes(
-            suffixFromSnapshot,
-            suffixToSnapshots
-          )
-
-          const spanTransition: Transition = {
-            duration: isTransitioning ? 0.6 : totalDuration,
-            times: isTransitioning ? [0, 1] : times,
-            delay: isTransitioning
-              ? 0
-              : ((prefixElements.length + 1 + index) * delay) / 1000
-          }
-          ;(spanTransition as any).ease = easing
-
-          return (
-            <motion.span
-              key={`suffix-${currentsuffixIndex}-${index}`}
-              initial={suffixFromSnapshot}
-              animate={inView ? animateKeyframes : suffixFromSnapshot}
-              transition={spanTransition}
-              onAnimationComplete={
-                index === suffixElements.length - 1 && !initialAnimationComplete
-                  ? handleInitialAnimationComplete
-                  : undefined
+        {/* Render suffix text */}
+        {!initialAnimationComplete && suffixElements.length > 0 && (
+          // Initial entrance animation (per word/letter with stagger)
+          <>
+            {suffixElements.map((segment: string, index: number) => {
+              const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots)
+              const spanTransition: Transition = {
+                duration: totalDuration,
+                times,
+                delay: ((prefixElements.length + 1 + index) * delay) / 1000
               }
-              layout
-              style={{
-                display: 'inline-block',
-                willChange: 'transform, filter, opacity'
-              }}
+              ;(spanTransition as any).ease = easing
+
+              return (
+                <motion.span
+                  key={`suffix-initial-${index}`}
+                  initial={fromSnapshot}
+                  animate={inView ? animateKeyframes : fromSnapshot}
+                  transition={spanTransition}
+                  onAnimationComplete={
+                    index === suffixElements.length - 1
+                      ? handleInitialAnimationComplete
+                      : undefined
+                  }
+                  layout
+                  style={{
+                    display: 'inline-block',
+                    willChange: 'transform, filter, opacity'
+                  }}
+                >
+                  {segment === ' ' ? '\u00A0' : segment}
+                  {animateBy === 'words' &&
+                    index < suffixElements.length - 1 &&
+                    '\u00A0'}
+                </motion.span>
+              )
+            })}
+          </>
+        )}
+
+        {initialAnimationComplete && (
+          // Crossfade between previous and current suffix to avoid flicker
+          <span
+            className="relative inline-block"
+            style={{ position: 'relative', display: 'inline-block' }}
+          >
+            {prevSuffixIndex !== null && (
+              <motion.span
+                key={`prev-${prevSuffixIndex}`}
+                initial={{ opacity: 1, filter: 'blur(0px)' }}
+                animate={{ opacity: 0, filter: 'blur(6px)' }}
+                transition={{
+                  duration: crossfadeDurationSec,
+                  ease: 'easeInOut'
+                }}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  pointerEvents: 'none'
+                }}
+              >
+                {prevSuffixText}
+              </motion.span>
+            )}
+            <motion.span
+              key={`curr-${currentsuffixIndex}`}
+              initial={{ opacity: 0, filter: 'blur(6px)' }}
+              animate={{ opacity: 1, filter: 'blur(0px)' }}
+              transition={{ duration: crossfadeDurationSec, ease: 'easeInOut' }}
+              style={{ display: 'inline-block' }}
             >
-              {segment === ' ' ? '\u00A0' : segment}
-              {animateBy === 'words' &&
-                index < suffixElements.length - 1 &&
-                '\u00A0'}
+              {currentsuffixText}
             </motion.span>
-          )
-        })}
+          </span>
+        )}
 
         {/* If no suffix, handle completion on prefix */}
         {!suffix && prefixElements.length > 0 && (
