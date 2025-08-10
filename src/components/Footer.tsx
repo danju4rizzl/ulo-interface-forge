@@ -45,8 +45,8 @@ const Footer: React.FC = () => {
             <img src="/ulo-logo.png" alt="Ulo" className="h-20" />
 
             <p className="text-sm text-gray-600">
-              Ulo is a search engine that helps you find what you're looking
-              for.
+              Ulo is an Effortless stays, with trusted local guides, and
+              multi-currency payments.
             </p>
           </div>
           {footerSections.map((section, index) => (
@@ -67,7 +67,7 @@ const Footer: React.FC = () => {
           ))}
         </div>
         <div className="border-t border-gray-200 mt-8 pt-8 text-sm text-gray-600">
-          <p>&copy; 2024 Ulo LLC. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Ulo LLC. All rights reserved.</p>
         </div>
       </div>
     </footer>
