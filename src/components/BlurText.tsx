@@ -183,36 +183,46 @@ const BlurText: React.FC<BlurTextProps> = ({
       ref={ref}
       className={`blur-text-block ${className} flex flex-col items-center`}
     >
-      <h1 className="blur-text text-center">
+      <motion.h1
+        className="blur-text text-center min-w-[1245px]"
+        layout
+        transition={{ layout: { type: 'spring', stiffness: 300, damping: 30 } }}
+        style={{ display: 'inline-block' }}
+      >
         {/* Render prefix text (static after initial animation) */}
-        {prefixElements.map((segment: string, index: number) => {
-          const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots)
+        <motion.span
+          layout
+          style={{ display: 'inline-flex', alignItems: 'baseline' }}
+        >
+          {prefixElements.map((segment: string, index: number) => {
+            const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots)
 
-          const spanTransition: Transition = {
-            duration: totalDuration,
-            times,
-            delay: (index * delay) / 1000
-          }
-          ;(spanTransition as any).ease = easing
+            const spanTransition: Transition = {
+              duration: totalDuration,
+              times,
+              delay: (index * delay) / 1000
+            }
+            ;(spanTransition as any).ease = easing
 
-          return (
-            <motion.span
-              key={`prefix-${index}`}
-              initial={fromSnapshot}
-              animate={inView ? animateKeyframes : fromSnapshot}
-              transition={spanTransition}
-              style={{
-                display: 'inline-block',
-                willChange: 'transform, filter, opacity'
-              }}
-            >
-              {segment === ' ' ? '\u00A0' : segment}
-              {animateBy === 'words' &&
-                index < prefixElements.length - 1 &&
-                '\u00A0'}
-            </motion.span>
-          )
-        })}
+            return (
+              <motion.span
+                key={`prefix-${index}`}
+                initial={fromSnapshot}
+                animate={inView ? animateKeyframes : fromSnapshot}
+                transition={spanTransition}
+                style={{
+                  display: 'inline-block',
+                  willChange: 'transform, filter, opacity'
+                }}
+              >
+                {segment === ' ' ? '\u00A0' : segment}
+                {animateBy === 'words' &&
+                  index < prefixElements.length - 1 &&
+                  '\u00A0'}
+              </motion.span>
+            )
+          })}
+        </motion.span>
 
         {/* Add space between prefix and suffix if both exist */}
         {prefixElements.length > 0 && suffixElements.length > 0 && (
@@ -226,6 +236,7 @@ const BlurText: React.FC<BlurTextProps> = ({
               times,
               delay: (prefixElements.length * delay) / 1000
             }}
+            layout
             style={{
               display: 'inline-block',
               willChange: 'transform, filter, opacity'
@@ -253,7 +264,7 @@ const BlurText: React.FC<BlurTextProps> = ({
 
           return (
             <motion.span
-              key={`suffix-${currentsuffixIndex}-${index}`} // Key changes to trigger re-animation
+              key={`suffix-${currentsuffixIndex}-${index}`}
               initial={suffixFromSnapshot}
               animate={inView ? animateKeyframes : suffixFromSnapshot}
               transition={spanTransition}
@@ -262,6 +273,7 @@ const BlurText: React.FC<BlurTextProps> = ({
                   ? handleInitialAnimationComplete
                   : undefined
               }
+              layout
               style={{
                 display: 'inline-block',
                 willChange: 'transform, filter, opacity'
@@ -289,7 +301,7 @@ const BlurText: React.FC<BlurTextProps> = ({
             style={{ display: 'none' }}
           />
         )}
-      </h1>
+      </motion.h1>
       {bottomText && (
         <h1 className="blur-text text-center mt-2">
           {(animateBy === 'words'
