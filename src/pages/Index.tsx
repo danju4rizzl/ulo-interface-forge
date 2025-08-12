@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '@/components/Header'
 import HeroSection from '@/components/HeroSection'
 import VideoShowcaseSection from '@/components/VideoShowcaseSection'
+import HandsFreeManagementSection from '@/components/HandsFreeManagementSection'
 import FeaturesSection from '@/components/FeaturesSection'
 import BusinessShowcaseSection from '@/components/BusinessShowcaseSection'
 import AnalyticsSection from '@/components/AnalyticsSection'
@@ -21,6 +22,8 @@ const Index = () => {
         <HeroSection heroContent={heroContent} />
 
         <VideoShowcaseSection heroContent={heroContent} />
+
+        <HandsFreeManagementSection />
 
         <FeaturesSection />
 
