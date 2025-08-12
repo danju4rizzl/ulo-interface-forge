@@ -187,7 +187,7 @@ const Header: React.FC = () => {
                       : 'bg-primary text-white hover:bg-primary/90'
                   }`}
                 >
-                  Get started
+                  Become a host
                 </Button>
               </div>
             </div>

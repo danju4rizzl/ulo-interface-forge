@@ -1,5 +1,5 @@
 import { motion, Transition } from 'framer-motion'
-import { useEffect, useRef, useState, useMemo } from 'react'
+import { useEffect, useRef, useState, useMemo, useLayoutEffect } from 'react'
 
 type BlurTextProps = {
   text?: string
@@ -62,6 +62,9 @@ const BlurText: React.FC<BlurTextProps> = ({
   const ref = useRef<HTMLDivElement>(null)
   const cycleTimerRef = useRef<NodeJS.Timeout | null>(null)
   const crossfadeTimerRef = useRef<NodeJS.Timeout | null>(null)
+  // Measurement refs to lock container width to the widest suffix
+  const measureRef = useRef<HTMLSpanElement>(null)
+  const [maxSuffixWidth, setMaxSuffixWidth] = useState<number | null>(null)
 
   // Split text into prefix and suffix parts for separate animation
   const prefixElements = useMemo(() => {
@@ -85,13 +88,6 @@ const BlurText: React.FC<BlurTextProps> = ({
     if (prevSuffixIndex === null || !suffix || suffix.length === 0) return ''
     return suffix[prevSuffixIndex]
   }, [prevSuffixIndex, suffix])
-
-  const prevSuffixElements = useMemo(() => {
-    if (!prevSuffixText) return []
-    return animateBy === 'words'
-      ? prevSuffixText.split(' ')
-      : prevSuffixText.split('')
-  }, [prevSuffixText, animateBy])
 
   useEffect(() => {
     if (!ref.current) return
@@ -157,6 +153,20 @@ const BlurText: React.FC<BlurTextProps> = ({
     }
   }, [suffix, cycleInterval, initialAnimationComplete])
 
+  // Measure the widest suffix and lock container width to avoid wrap and layout shift
+  useLayoutEffect(() => {
+    const compute = () => {
+      if (!measureRef.current) return
+      const children = Array.from(measureRef.current.children) as HTMLElement[]
+      const widths = children.map((el) => el.offsetWidth)
+      const max = widths.length ? Math.max(...widths) : null
+      setMaxSuffixWidth(max)
+    }
+    compute()
+    window.addEventListener('resize', compute)
+    return () => window.removeEventListener('resize', compute)
+  }, [suffix, animateBy])
+
   // Cleanup on unmount
   useEffect(() => {
     return () => {
@@ -197,7 +207,7 @@ const BlurText: React.FC<BlurTextProps> = ({
   )
 
   // Crossfade duration for cycling between suffix texts (in seconds)
-  const crossfadeDurationSec = 0.6
+  const crossFadeDurationSec = 0.9
 
   return (
     <div
@@ -205,11 +215,30 @@ const BlurText: React.FC<BlurTextProps> = ({
       className={`blur-text-block ${className} flex flex-col items-center`}
     >
       <motion.h1
-        className="blur-text text-center min-w-[1245px]"
+        className="blur-text text-center min-w-[1545px]"
         layout
         transition={{ layout: { type: 'spring', stiffness: 300, damping: 30 } }}
         style={{ display: 'inline-block' }}
       >
+        {/* Hidden measurer for suffix widths */}
+        <span
+          ref={measureRef}
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            left: -99999,
+            top: 0,
+            visibility: 'hidden',
+            whiteSpace: 'nowrap',
+            pointerEvents: 'none'
+          }}
+        >
+          {suffix?.map((s, i) => (
+            <span key={i} style={{ display: 'inline-block' }}>
+              {s.replace(/ /g, '\u00A0')}
+            </span>
+          ))}
+        </span>
         {/* Render prefix text (static after initial animation) */}
         <motion.span
           layout
@@ -311,7 +340,11 @@ const BlurText: React.FC<BlurTextProps> = ({
           // Crossfade between previous and current suffix to avoid flicker
           <span
             className="relative inline-block"
-            style={{ position: 'relative', display: 'inline-block' }}
+            style={{
+              position: 'relative',
+              display: 'inline-block',
+              whiteSpace: 'nowrap'
+            }}
           >
             {prevSuffixIndex !== null && (
               <motion.span
@@ -319,7 +352,7 @@ const BlurText: React.FC<BlurTextProps> = ({
                 initial={{ opacity: 1, filter: 'blur(0px)' }}
                 animate={{ opacity: 0, filter: 'blur(6px)' }}
                 transition={{
-                  duration: crossfadeDurationSec,
+                  duration: crossFadeDurationSec,
                   ease: 'easeInOut'
                 }}
                 style={{
@@ -327,18 +360,16 @@ const BlurText: React.FC<BlurTextProps> = ({
                   inset: 0,
                   pointerEvents: 'none'
                 }}
-              >
-                {prevSuffixText}
-              </motion.span>
+              ></motion.span>
             )}
             <motion.span
               key={`curr-${currentsuffixIndex}`}
               initial={{ opacity: 0, filter: 'blur(6px)' }}
               animate={{ opacity: 1, filter: 'blur(0px)' }}
-              transition={{ duration: crossfadeDurationSec, ease: 'easeInOut' }}
+              transition={{ duration: crossFadeDurationSec, ease: 'easeInOut' }}
               style={{ display: 'inline-block' }}
             >
-              {currentsuffixText}
+              {currentsuffixText.replace(/ /g, '\u00A0')}
             </motion.span>
           </span>
         )}
