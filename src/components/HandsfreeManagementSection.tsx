@@ -1,10 +1,10 @@
 import React from 'react'
 
 const video1 =
-  'https://res.cloudinary.com/dfcsaxtru/video/upload/v1755007130/INTRO_HANDS-FREE__nf3r51.mp4'
+  'https://res.cloudinary.com/dfcsaxtru/video/upload/q_40/v1755007130/INTRO_HANDS-FREE__nf3r51.mp4'
 
 const video2 =
-  'https://res.cloudinary.com/dfcsaxtru/video/upload/v1754571912/ANCILARY_V2_gxpgwl.mp4'
+  'https://res.cloudinary.com/dfcsaxtru/video/upload/q_40/v1754571912/ANCILARY_V2_gxpgwl.mp4'
 
 const HandsFreeManagementSection: React.FC = () => {
   return (
@@ -43,6 +43,8 @@ const HandsFreeManagementSection: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* https://res.cloudinary.com/deejaydev/video/upload/ac_none,q_86/v1752616484/Ulo-v2-assets/Ulo_Short_Film-2_hal9ry.webm */}
 
       {/* Hands‑free features highlight (centered) */}
       <section id="handsfree-features" className="py-24 px-4 sm:px-6 lg:px-8">

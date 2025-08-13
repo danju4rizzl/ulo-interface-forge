@@ -29,10 +29,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroContent }) => {
         muted
         playsInline
         preload="metadata"
-        style={{ backgroundColor: '#0e0e0a' }} // Fallback color matching bg-primary
       >
         <source
-          src="https://res.cloudinary.com/dfcsaxtru/video/upload/v1754394418/HERO_PAGE_1_yvuicp.mp4"
+          src="https://res.cloudinary.com/dfcsaxtru/video/upload/q_50/v1754394418/HERO_PAGE_1_yvuicp.mp4"
           type="video/mp4"
         />
         {/* Fallback for browsers that don't support video */}

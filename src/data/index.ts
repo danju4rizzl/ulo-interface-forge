@@ -15,7 +15,7 @@ export const businessSlides: BusinessSlide[] = [
     description:
       'Earn without the effort. We handle bookings, cleaning, and guest support — so you can relax, travel, or focus on what matters.',
     videoUrl:
-      'https://res.cloudinary.com/dfcsaxtru/video/upload/v1752930081/HOST_XPE-_zjlufk.mp4'
+      'https://res.cloudinary.com/dfcsaxtru/video/upload/q_40/v1752930081/HOST_XPE-_zjlufk.mp4'
   },
   {
     id: 1,
@@ -23,7 +23,7 @@ export const businessSlides: BusinessSlide[] = [
     description:
       'See it before you stay. Watch real videos from past guests and hosts to feel the vibe, explore the space, and book with confidence.',
     videoUrl:
-      'https://res.cloudinary.com/dfcsaxtru/video/upload/v1752930082/XPERIENCE_REELS_zg6mrp.mp4'
+      'https://res.cloudinary.com/dfcsaxtru/video/upload/q_40/v1752930082/XPERIENCE_REELS_zg6mrp.mp4'
   },
   {
     id: 2,
@@ -31,7 +31,7 @@ export const businessSlides: BusinessSlide[] = [
     description:
       'Don’t just visit — connect. Our trusted on-ground associates help you explore, belong, and make the most of every moment in Africa.',
     videoUrl:
-      'https://res.cloudinary.com/dfcsaxtru/video/upload/v1752586704/GUEST_XPE_rwhehv.mp4'
+      'https://res.cloudinary.com/dfcsaxtru/video/upload/q_40/v1752586704/GUEST_XPE_rwhehv.mp4'
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ export const businessSlides: BusinessSlide[] = [
     description:
       'Pay in your own currency, and earn in yours. Ulô makes transactions smooth and secure — no stress, no conversion headaches.',
     videoUrl:
-      'https://res.cloudinary.com/dfcsaxtru/video/upload/v1752584118/PAYMENT_xomfml.mp4'
+      'https://res.cloudinary.com/dfcsaxtru/video/upload/q_40/v1752584118/PAYMENT_xomfml.mp4'
   }
 ]
 
