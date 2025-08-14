@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 
 const video1 =
   'https://res.cloudinary.com/dfcsaxtru/video/upload/q_40/v1755007130/INTRO_HANDS-FREE__nf3r51.mp4'
@@ -7,6 +7,44 @@ const video2 =
   'https://res.cloudinary.com/dfcsaxtru/video/upload/q_40/v1754571912/ANCILARY_V2_gxpgwl.mp4'
 
 const HandsFreeManagementSection: React.FC = () => {
+  const video1Ref = useRef<HTMLVideoElement>(null)
+  const video2Ref = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-100px 0px -100px 0px', // 100px threshold
+      threshold: 0.1
+    }
+
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        const video = entry.target as HTMLVideoElement
+        
+        if (entry.isIntersecting) {
+          video.play().catch(() => {
+            // Handle play() promise rejection silently
+          })
+        } else {
+          video.pause()
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions)
+
+    if (video1Ref.current) {
+      observer.observe(video1Ref.current)
+    }
+    if (video2Ref.current) {
+      observer.observe(video2Ref.current)
+    }
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
   return (
     <>
       <section
@@ -29,8 +67,8 @@ const HandsFreeManagementSection: React.FC = () => {
           <div className="relative">
             <div className="relative  overflow-hidden  ">
               <video
+                ref={video1Ref}
                 className="w-full h-full object-fill"
-                autoPlay
                 muted
                 loop
                 playsInline
@@ -60,8 +98,8 @@ const HandsFreeManagementSection: React.FC = () => {
         <div className="flex justify-center">
           <div className="relative w-[300px] sm:w-[340px] md:w-[320px] aspect-[9/19.5] overflow-hidden">
             <video
+              ref={video2Ref}
               className="absolute w-full h-full object-cover"
-              autoPlay
               muted
               loop
               playsInline
