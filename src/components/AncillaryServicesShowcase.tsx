@@ -33,6 +33,10 @@ const AncillaryServicesShowcase: React.FC<AncillaryServicesShowcaseProps> = ({
   const progressRef = useRef<number>(0)
   const animationFrameRef = useRef<number | null>(null)
 
+  // Video playback control refs
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+  const hasEnteredViewportOnceRef = useRef<boolean>(false)
+
   // Clear any existing timer
   const clearTimer = () => {
     if (timerRef.current) {
@@ -133,11 +137,70 @@ const AncillaryServicesShowcase: React.FC<AncillaryServicesShowcaseProps> = ({
     }
   }, [])
 
+  // Viewport-based video playback control
+  useEffect(() => {
+    const videoEl = videoRef.current
+    if (!videoEl || typeof IntersectionObserver === 'undefined') {
+      return
+    }
+
+    const applyPlayback = (shouldPlay: boolean) => {
+      const v = videoRef.current
+      if (!v) return
+      const currentlyPlaying = !v.paused && !v.ended
+      if (shouldPlay && !currentlyPlaying) {
+        const playPromise = v.play()
+        if (playPromise && typeof (playPromise as any).catch === 'function') {
+          ;(playPromise as Promise<void>).catch(() => {})
+        }
+      } else if (!shouldPlay && currentlyPlaying) {
+        v.pause()
+      }
+    }
+
+    const entryObserver = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0]
+        if (entry.isIntersecting) {
+          hasEnteredViewportOnceRef.current = true
+          applyPlayback(true)
+        }
+      },
+      { root: null, threshold: 0 }
+    )
+
+    const proximityObserver = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0]
+        if (!entry.isIntersecting) {
+          applyPlayback(false)
+        } else if (hasEnteredViewportOnceRef.current) {
+          applyPlayback(true)
+        }
+      },
+      { root: null, rootMargin: '50px 0px 50px 0px', threshold: 0 }
+    )
+
+    entryObserver.observe(videoEl)
+    proximityObserver.observe(videoEl)
+
+    return () => {
+      entryObserver.disconnect()
+      proximityObserver.disconnect()
+    }
+  }, [])
+
   const renderVideoContent = () => {
     return (
       <div className="flex flex-col items-center">
         <div className="w-full max-w-[700px] h-[500px] sm:h-[240px] md:h-[580px] mb-4 sm:mb-6">
-          <video className="w-full h-full" autoPlay loop muted playsInline>
+          <video
+            ref={videoRef}
+            className="w-full h-full"
+            loop
+            muted
+            playsInline
+          >
             <source
               src="https://res.cloudinary.com/dfcsaxtru/video/upload/q_50/v1754571912/ANCILARY_V2_gxpgwl.mp4"
               type="video/mp4"
