@@ -12,8 +12,10 @@ const BusinessShowcaseSection: React.FC<BusinessShowcaseSectionProps> = ({
   const [activeSlide, setActiveSlide] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [videoDuration, setVideoDuration] = useState(0)
+  const [isInView, setIsInView] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
+  const sectionRef = useRef<HTMLElement>(null)
 
   // Clear any existing timer
   const clearTimer = () => {
@@ -46,16 +48,24 @@ const BusinessShowcaseSection: React.FC<BusinessShowcaseSectionProps> = ({
       const duration = videoRef.current.duration
       setVideoDuration(duration)
 
-      // Clear any existing timer and set new one based on video duration
-      // Use minimum of 3 seconds if video is too short or duration is invalid
-      const timerDuration = duration && duration > 1 ? duration * 1000 : 5000
-
-      clearTimer()
-      timerRef.current = setTimeout(() => {
-        const nextSlide = (activeSlide + 1) % businessSlides.length
-        handleSlideChange(nextSlide)
-      }, timerDuration)
+      // Only start timer if section is in view
+      if (isInView) {
+        startTimer(duration)
+      }
     }
+  }
+
+  // Start timer function
+  const startTimer = (duration: number) => {
+    // Clear any existing timer and set new one based on video duration
+    // Use minimum of 3 seconds if video is too short or duration is invalid
+    const timerDuration = duration && duration > 1 ? duration * 1000 : 5000
+
+    clearTimer()
+    timerRef.current = setTimeout(() => {
+      const nextSlide = (activeSlide + 1) % businessSlides.length
+      handleSlideChange(nextSlide)
+    }, timerDuration)
   }
 
   // Handle video ended event
@@ -75,8 +85,49 @@ const BusinessShowcaseSection: React.FC<BusinessShowcaseSectionProps> = ({
     // Timer will be set when video metadata loads
   }, [activeSlide])
 
+  // Intersection observer to pause/resume when out of view
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-100px 0px -100px 0px', // 100px threshold
+      threshold: 0.1
+    }
+
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        const inView = entry.isIntersecting
+        setIsInView(inView)
+        
+        if (videoRef.current) {
+          if (inView) {
+            videoRef.current.play().catch(() => {
+              // Handle play() promise rejection silently
+            })
+            // Start timer if video has duration
+            if (videoDuration > 0) {
+              startTimer(videoDuration)
+            }
+          } else {
+            videoRef.current.pause()
+            clearTimer()
+          }
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions)
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [videoDuration, activeSlide])
+
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8" id="business-section">
+    <section ref={sectionRef} className="py-20 px-4 sm:px-6 lg:px-8" id="business-section">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-normal text-gray-900 mb-4">
@@ -146,7 +197,6 @@ const BusinessShowcaseSection: React.FC<BusinessShowcaseSectionProps> = ({
               >
                 <video
                   ref={videoRef}
-                  autoPlay
                   muted
                   controlsList="nodownload"
                   className="h-[600px] w-[500px] -mt-12"
