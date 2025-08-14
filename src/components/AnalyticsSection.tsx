@@ -25,7 +25,7 @@ const AnalyticsSection: React.FC = () => {
         playsInline
       >
         <source
-          src="https://res.cloudinary.com/dfcsaxtru/video/upload/q_50/v1754588073/NETWORKING_dkacxc.mp4"
+          src="https://res.cloudinary.com/dfcsaxtru/video/upload/q_30/v1754588073/NETWORKING_dkacxc.mp4"
           type="video/mp4"
         />
         Your browser does not support the video tag.

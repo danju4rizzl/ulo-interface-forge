@@ -7,7 +7,7 @@ interface VideoShowcaseSectionProps {
 }
 
 const THUMBNAIL_URL =
-  'https://res.cloudinary.com/dfcsaxtru/video/upload/q_40/v1753103917/THUMBNAIL_rkh4m3.mp4'
+  'https://res.cloudinary.com/dfcsaxtru/video/upload/q_60/v1753103917/THUMBNAIL_rkh4m3.mp4'
 
 const VideoShowcaseSection: React.FC<VideoShowcaseSectionProps> = ({
   heroContent
