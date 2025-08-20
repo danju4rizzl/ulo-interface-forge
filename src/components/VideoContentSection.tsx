@@ -1,12 +1,26 @@
 import React, { useRef, useEffect } from 'react'
 
-const video1 =
-  'https://res.cloudinary.com/dfcsaxtru/video/upload/q_40/v1755007130/INTRO_HANDS-FREE__nf3r51.mp4'
+interface VideoContentSectionProps {
+  title1: string
+  subtitle1: string
+  video1: string
+  title2: string
+  subtitle2: string
+  video2: string
+  sectionId?: string
+  className?: string
+}
 
-const video2 =
-  'https://res.cloudinary.com/dfcsaxtru/video/upload/q_40/v1754571912/ANCILARY_V2_gxpgwl.mp4'
-
-const HandsFreeManagementSection: React.FC = () => {
+const VideoContentSection: React.FC<VideoContentSectionProps> = ({
+  title1,
+  subtitle1,
+  video1,
+  title2,
+  subtitle2,
+  video2,
+  sectionId = 'video-content-section',
+  className = ''
+}) => {
   const video1Ref = useRef<HTMLVideoElement>(null)
   const video2Ref = useRef<HTMLVideoElement>(null)
 
@@ -20,7 +34,7 @@ const HandsFreeManagementSection: React.FC = () => {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         const video = entry.target as HTMLVideoElement
-        
+
         if (entry.isIntersecting) {
           video.play().catch(() => {
             // Handle play() promise rejection silently
@@ -31,7 +45,10 @@ const HandsFreeManagementSection: React.FC = () => {
       })
     }
 
-    const observer = new IntersectionObserver(handleIntersection, observerOptions)
+    const observer = new IntersectionObserver(
+      handleIntersection,
+      observerOptions
+    )
 
     if (video1Ref.current) {
       observer.observe(video1Ref.current)
@@ -48,24 +65,21 @@ const HandsFreeManagementSection: React.FC = () => {
   return (
     <>
       <section
-        id="handsfree-section"
-        className="pt-5 px-4 sm:px-6 lg:px-8 min-h-min bg-white"
+        id={`${sectionId}-1`}
+        className={`pt-5 px-4 sm:px-6 lg:px-8 min-h-min bg-white ${className}`}
       >
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Content */}
           <div className="text-left">
-            <h2 className="text-3xl  text-primary font-semibold mb-4">
-              Hands‑Free Management
+            <h2 className="text-6xl text-primary font-semibold mb-4  max-w-3 tracking-tight ">
+              {title1}
             </h2>
-            <p className="text-xl  text-primary/60  max-w-xl">
-              Bookings, guest check‑ins, cleaning, and support — handled for
-              you. Focus on what matters while Ulô runs the day‑to‑day.
-            </p>
+            <p className="text-xl text-primary/60 max-w-lg">{subtitle1}</p>
           </div>
 
           {/* Right: Video */}
           <div className="relative">
-            <div className="relative  overflow-hidden  ">
+            <div className="relative overflow-hidden">
               <video
                 ref={video1Ref}
                 className="w-full h-full object-fill"
@@ -82,24 +96,19 @@ const HandsFreeManagementSection: React.FC = () => {
         </div>
       </section>
 
-      {/* https://res.cloudinary.com/deejaydev/video/upload/ac_none,q_86/v1752616484/Ulo-v2-assets/Ulo_Short_Film-2_hal9ry.webm */}
-
-      {/* Hands‑free features highlight (centered) */}
-      <section id="handsfree-features" className="py-24 px-4 sm:px-6 lg:px-8">
+      {/* Second section (centered) */}
+      <section id={`${sectionId}-2`} className="py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-5">
-          <h3 className="text-3xl font-semibold text-primary mb-3">
-            Make your stay more special
-          </h3>
-          <p className="text-xl text-primary/60">
-            Get incredible services at a range of prices
-            <span className="block"> right at your Ulô stay.</span>
+          <h3 className="text-4xl font-semibold text-primary mb-3">{title2}</h3>
+          <p className="text-xl text-primary/60 max-w-lg mx-auto">
+            {subtitle2}
           </p>
         </div>
-        <div className="flex justify-center">
-          <div className="relative w-[300px] sm:w-[340px] md:w-[320px] aspect-[9/19.5] overflow-hidden">
+        <div className="flex justify-center ">
+          <div className="relative overflow-hidden ">
             <video
               ref={video2Ref}
-              className="absolute w-full h-full object-cover"
+              className="ml-14 w-full max-h-[620px] object-contain"
               muted
               loop
               playsInline
@@ -115,4 +124,4 @@ const HandsFreeManagementSection: React.FC = () => {
   )
 }
 
-export default HandsFreeManagementSection
+export default VideoContentSection

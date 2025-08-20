@@ -224,8 +224,9 @@ const AncillaryServicesShowcase: React.FC<AncillaryServicesShowcaseProps> = ({
               Go Beyond the Stay
             </h2>
             <p className="text-lg text-gray-600">
-              Add ease, thrill, and local flavor to your journey — with trusted
-              services that take your African experience further.
+              Add ease, thrill, and local flavor to your journey
+              <br /> with trusted services that take your African experience
+              further.
             </p>
           </div>
         </div>

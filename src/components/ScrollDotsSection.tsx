@@ -41,7 +41,7 @@ const ScrollDotsSection: React.FC = () => {
   return (
     <div
       ref={scrollDotsRef}
-      className="min-h-52 mt-44 flex items-center justify-center py-20"
+      className="min-h-52  flex items-center justify-center py-20"
     >
       <div className="relative">
         {/* Dots path with icons */}
@@ -62,7 +62,7 @@ const ScrollDotsSection: React.FC = () => {
 
           {/* Last dot - Home icon */}
           <div className="flex items-center justify-center w-8 h-8">
-            <img src="/icons/HOME.png" alt="" className="z-50" />
+            <img src="/icons/AFRICA.jpg" alt="" className="z-50" />
             {/* <Home className="w-4 h-4 text-gray-400 opacity-60" /> */}
           </div>
         </div>

@@ -12,7 +12,7 @@ const FeaturesSection: React.FC = () => {
     },
     {
       icon: <img src="/icons/feature-icon2.svg" className="w-8 h-8" />,
-      title: 'Xperience Reels',
+      title: 'Xperience Gallery',
       description:
         'See real guest videos. Feel the atmosphere, energy, and stories — before you even book.',
       bgColor: 'bg-primary'
@@ -26,7 +26,7 @@ const FeaturesSection: React.FC = () => {
     },
     {
       icon: <img src="/icons/feature-icon1.svg" className="w-8 h-8" />,
-      title: 'Multi-Payment Enable',
+      title: 'Borderless Payment Enable',
       description:
         'Pay in your currency, earn in local African currencies — no stress, just seamless transactions across borders.',
       bgColor: 'bg-primary'
