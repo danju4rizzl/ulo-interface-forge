@@ -19,37 +19,47 @@ const CTASection: React.FC = () => {
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto text-center">
-        <img
-          src="/ucap-logo.png"
-          alt="UCAP program logo"
-          className="h-28 mb-3 mx-auto"
-        />
+      <div className="max-w-6xl mx-auto ">
+        <div className="flex items-center justify-center space-x-5">
+          <img
+            src="/ucap-logo.png"
+            alt="UCAP program logo"
+            className="h-20 mb-3"
+          />
 
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-normal text-gray-900 mb-4">
+          <h2 className="text-4xl font-semibold text-primary mb-3">
             Become an Ulô Certified Associate
           </h2>
-          <p className="text-lg text-gray-600">
-            Join a network of professional Associates, get globally certified,
-            and earn more. Take the UCAP and unlock $10K+ annual income with
-            world-class hospitality training.
-          </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          {ctaFeatures.map((feature, index) => (
+        <div className="grid md:grid-cols-2 gap-8 my-16 items-center">
+          <div className="">
+            <img
+              src="/icons/BADGE.png"
+              alt="UCAP program logo"
+              className="h-full mb-3"
+            />
+          </div>
+
+          <div className="space-y-5 mb-12">
+            <p className="text-lg text-gray-600">
+              Join a network of professional Associates, get globally certified,
+              and earn more. Take the UCAP and unlock $10K+ annual income with
+              world-class hospitality training.
+            </p>
+            <Button className="bg-primary hover:bg-primary/90 text-white px-8 py-3 text-base">
+              Apply for UCAP Now →
+            </Button>
+          </div>
+          {/* {ctaFeatures.map((feature, index) => (
             <div key={index}>
               <h3 className="text-lg font-medium text-gray-900 mb-2">
                 {feature.title}
               </h3>
               <p className="text-gray-600">{feature.description}</p>
             </div>
-          ))}
+          ))} */}
         </div>
-        <Button className="bg-primary hover:bg-primary/90 text-white px-8 py-3 text-base">
-          Apply for UCAP Now →
-        </Button>
       </div>
     </section>
   )

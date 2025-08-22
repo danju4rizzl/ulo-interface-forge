@@ -58,6 +58,16 @@ You get paid. Guests enjoy. Transactions stay seamless."
           sectionId="handsfree-section"
         />
 
+        <VideoContentSection
+          title1="Hello!!!"
+          subtitle1="From bookings to extras, Ulô Cowries handles it all.
+You get paid. Guests enjoy. Transactions stay seamless."
+          video1="https://res.cloudinary.com/dfcsaxtru/video/upload/v1755683872/PAYMENT_UI_vjtgta.mp4"
+          title2="Enjoy every moment, not the money stress"
+          subtitle2="With Ulô Cowries, guests pay in their way, hosts earn without delays, and every transaction feels simple and worry-free."
+          video2="https://res.cloudinary.com/dfcsaxtru/video/upload/v1752584118/PAYMENT_xomfml.mp4"
+          sectionId="handsfree-section"
+        />
         <FeaturesSection />
 
         {/* <BusinessShowcaseSection businessSlides={businessSlides} /> */}
@@ -67,9 +77,19 @@ You get paid. Guests enjoy. Transactions stay seamless."
           sectionTitle="Go Beyond the Stay"
         />
 
-        <AnalyticsSection />
-
+        <VideoContentSection
+          title1="Guest Handbook"
+          subtitle1="From bookings to extras, Ulô Cowries handles it all.
+You get paid. Guests enjoy. Transactions stay seamless."
+          video1="https://res.cloudinary.com/dfcsaxtru/video/upload/v1755683872/PAYMENT_UI_vjtgta.mp4"
+          title2="Enjoy every moment, not the money stress"
+          subtitle2="With Ulô Cowries, guests pay in their way, hosts earn without delays, and every transaction feels simple and worry-free."
+          video2="https://res.cloudinary.com/dfcsaxtru/video/upload/v1752584118/PAYMENT_xomfml.mp4"
+          sectionId="handsfree-section"
+        />
         <CTASection />
+
+        <AnalyticsSection />
 
         <FAQSection />
 

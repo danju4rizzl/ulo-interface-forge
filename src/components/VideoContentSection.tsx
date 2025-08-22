@@ -97,7 +97,7 @@ const VideoContentSection: React.FC<VideoContentSectionProps> = ({
       </section>
 
       {/* Second section (centered) */}
-      <section id={`${sectionId}-2`} className="py-24 px-4 sm:px-6 lg:px-8">
+      <section id={`${sectionId}-2`} className="py-24 px-4 sm:px-6 lg:px-12">
         <div className="max-w-3xl mx-auto text-center mb-5">
           <h3 className="text-4xl font-semibold text-primary mb-3">{title2}</h3>
           <p className="text-xl text-primary/60 max-w-lg mx-auto">
