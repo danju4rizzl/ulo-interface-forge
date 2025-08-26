@@ -4,7 +4,7 @@ import VideoShowcaseSection from '@/components/VideoShowcaseSection'
 import VideoContentSection from '@/components/VideoContentSection'
 import FeaturesSection from '@/components/FeaturesSection'
 import BusinessShowcaseSection from '@/components/BusinessShowcaseSection'
-import AnalyticsSection from '@/components/AnalyticsSection'
+import HowToJoinSection from '@/components/HowToJoinSection'
 import CTASection from '@/components/CTASection'
 import FAQSection from '@/components/FAQSection'
 import Footer from '@/components/Footer'
@@ -89,7 +89,7 @@ You get paid. Guests enjoy. Transactions stay seamless."
         />
         <CTASection />
 
-        <AnalyticsSection />
+        <HowToJoinSection />
 
         <FAQSection />
 

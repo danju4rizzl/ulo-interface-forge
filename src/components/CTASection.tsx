@@ -51,14 +51,6 @@ const CTASection: React.FC = () => {
               Apply for UCAP Now →
             </Button>
           </div>
-          {/* {ctaFeatures.map((feature, index) => (
-            <div key={index}>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
-                {feature.title}
-              </h3>
-              <p className="text-gray-600">{feature.description}</p>
-            </div>
-          ))} */}
         </div>
       </div>
     </section>
