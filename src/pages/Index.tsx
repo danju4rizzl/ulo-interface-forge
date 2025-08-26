@@ -33,6 +33,12 @@ You earn. Guests enjoy. Hosting becomes effortless."
           title2="Focus on what matters most"
           subtitle2="With Ulô Associates handling the chats, check-ins, and care, hosting feels easy — and guests feel at home."
           video2="https://res.cloudinary.com/dfcsaxtru/video/upload/v1756200044/CHAT_koyihu.mp4"
+          listItems={[
+            'Automated booking management',
+            '24/7 guest communication support',
+            'Seamless check-in and check-out process',
+            'Real-time property monitoring'
+          ]}
           sectionId="handsfree-section"
         />
 
@@ -44,6 +50,12 @@ You earn. Guests enjoy. Hosting becomes effortless."
           title2="See the soul of every stay"
           subtitle2="Ulô’s Xperience Gallery brings homes and journeys to life — inspiring trust, connection, and the excitement of what’s ahead."
           video2="https://res.cloudinary.com/dfcsaxtru/video/upload/v1756200146/XPE._DEMO_FULL_li5hau.mp4"
+          listItems={[
+            'High-quality photo galleries for every property',
+            'Virtual tours and 360° experiences',
+            'Local area highlights and attractions',
+            'Authentic guest reviews and testimonials'
+          ]}
           sectionId="handsfree-section"
         />
 
@@ -55,6 +67,12 @@ You get paid. Guests enjoy. Transactions stay seamless."
           title2="Enjoy every moment, not the money stress"
           subtitle2="With Ulô Cowries, guests pay in their way, hosts earn without delays, and every transaction feels simple and worry-free."
           video2="https://res.cloudinary.com/dfcsaxtru/video/upload/v1756200053/HOME_PAYMENT_qnvakc.mp4"
+          listItems={[
+            'Multi-currency payment support',
+            'Instant payment processing',
+            'Secure transaction handling',
+            'Automated payout scheduling'
+          ]}
           sectionId="handsfree-section"
         />
 
@@ -66,6 +84,12 @@ You get paid. Guests enjoy. Transactions stay seamless."
           title2="Enjoy every moment, not the money stress"
           subtitle2="With Ulô Cowries, guests pay in their way, hosts earn without delays, and every transaction feels simple and worry-free."
           video2="https://res.cloudinary.com/dfcsaxtru/video/upload/v1756200069/GUEST_TOUR_FULL_oc7fdk.mp4"
+          listItems={[
+            'Interactive property tours',
+            'Personalized welcome messages',
+            'Local recommendations and tips',
+            'Easy communication with hosts'
+          ]}
           sectionId="handsfree-section"
         />
         <FeaturesSection />
@@ -85,6 +109,12 @@ You get paid. Guests enjoy. Transactions stay seamless."
           title2="Enjoy every moment, not the money stress"
           subtitle2="With Ulô Cowries, guests pay in their way, hosts earn without delays, and every transaction feels simple and worry-free."
           video2="https://res.cloudinary.com/dfcsaxtru/video/upload/v1752584118/PAYMENT_xomfml.mp4"
+          listItems={[
+            'Comprehensive guest guidelines',
+            'Property-specific instructions',
+            'Emergency contact information',
+            'Local services and amenities guide'
+          ]}
           sectionId="handsfree-section"
         />
         <CTASection />

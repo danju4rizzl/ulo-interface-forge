@@ -7,6 +7,7 @@ interface VideoContentSectionProps {
   title2: string
   subtitle2: string
   video2: string
+  listItems?: string[] // Optional array of list items
   sectionId?: string
   className?: string
 }
@@ -18,6 +19,7 @@ const VideoContentSection: React.FC<VideoContentSectionProps> = ({
   title2,
   subtitle2,
   video2,
+  listItems = [],
   sectionId = 'video-content-section',
   className = ''
 }) => {
@@ -75,6 +77,17 @@ const VideoContentSection: React.FC<VideoContentSectionProps> = ({
               {title1}
             </h2>
             <p className="text-xl text-primary/60 max-w-lg">{subtitle1}</p>
+            {/* Dynamic list items */}
+            {listItems.length > 0 && (
+              <ul className="mt-6 space-y-3">
+                {listItems.map((item, index) => (
+                  <li key={index} className="flex items-start">
+                    <span className="text-green-500 mr-3 mt-1">✔️</span>
+                    <span className="text-lg text-primary/80">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           {/* Right: Video */}
