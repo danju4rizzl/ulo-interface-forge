@@ -1,15 +1,17 @@
+import { Check } from 'lucide-react'
 import React, { useRef, useEffect } from 'react'
 
 interface VideoContentSectionProps {
   title1: string
   subtitle1: string
   video1: string
-  title2: string
-  subtitle2: string
-  video2: string
+  title2?: string
+  subtitle2?: string
+  video2?: string
   listItems?: string[] // Optional array of list items
   sectionId?: string
   className?: string
+  isLooped?: boolean
 }
 
 const VideoContentSection: React.FC<VideoContentSectionProps> = ({
@@ -20,6 +22,7 @@ const VideoContentSection: React.FC<VideoContentSectionProps> = ({
   subtitle2,
   video2,
   listItems = [],
+  isLooped = true,
   sectionId = 'video-content-section',
   className = ''
 }) => {
@@ -79,11 +82,15 @@ const VideoContentSection: React.FC<VideoContentSectionProps> = ({
             <p className="text-xl text-primary/60 max-w-lg">{subtitle1}</p>
             {/* Dynamic list items */}
             {listItems.length > 0 && (
-              <ul className="mt-6 space-y-3">
+              <ul className="mt-6 space-y-1">
                 {listItems.map((item, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="text-green-500 mr-3 mt-1">✔️</span>
-                    <span className="text-lg text-primary/80">{item}</span>
+                  <li key={index} className="flex items-center">
+                    <span className="text-primary font-semibold mr-2 ">
+                      <Check strokeWidth={3.3} size={18} />
+                    </span>
+                    <span className="text-base font-medium  text-primary/80">
+                      {item}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -97,7 +104,7 @@ const VideoContentSection: React.FC<VideoContentSectionProps> = ({
                 ref={video1Ref}
                 className="w-full h-full object-fill"
                 muted
-                loop
+                loop={isLooped}
                 playsInline
                 preload="metadata"
               >
@@ -110,10 +117,14 @@ const VideoContentSection: React.FC<VideoContentSectionProps> = ({
       </section>
 
       {/* Second section (centered) */}
-      <section id={`${sectionId}-2`} className="py-24 px-4 sm:px-6 lg:px-12">
+      <section
+        id={`${sectionId}-2`}
+        className="py-24 px-4 sm:px-6 lg:px-12"
+        style={{ display: video2 ? 'block' : 'none' }}
+      >
         <div className="max-w-3xl mx-auto text-center mb-5">
-          <h3 className="text-4xl font-semibold text-primary mb-3">{title2}</h3>
-          <p className="text-xl text-primary/60 max-w-lg mx-auto">
+          <h3 className="text-3xl font-semibold text-primary mb-3">{title2}</h3>
+          <p className="text-base text-primary/60 max-w-sm mx-auto">
             {subtitle2}
           </p>
         </div>
@@ -121,9 +132,9 @@ const VideoContentSection: React.FC<VideoContentSectionProps> = ({
           <div className="relative overflow-hidden ">
             <video
               ref={video2Ref}
-              className="ml-14 w-full max-h-[620px] object-contain"
+              className="ml-14 w-full max-h-[520px] object-contain"
               muted
-              loop
+              loop={isLooped}
               playsInline
               preload="metadata"
             >

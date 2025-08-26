@@ -46,9 +46,9 @@ export const businessSlides: BusinessSlide[] = [
 export const flippedSlides: FlippedSlide[] = [
   {
     id: 0,
-    title: 'Private Car Rentals',
+    title: 'Private Car & Airport Transfers',
     description:
-      'Explore on your terms with reliable self-drive or chauffeur rides — including airport pickup and drop-off for smooth arrivals and departures.',
+      'Arrive and explore stress-free. Reliable cars, self-drive or chauffeur, with smooth airport pickup & drop-off.',
     contentType: 'component',
     icon: '/icons/CAR.png',
     spotlightTitle: 'Airport Pick-up and Drop-off or Personal Ride',
@@ -56,9 +56,9 @@ export const flippedSlides: FlippedSlide[] = [
   },
   {
     id: 1,
-    title: 'Helicopter Rides',
+    title: 'Private Chef Experience',
     description:
-      'Skip traffic or chase the horizon. Enjoy luxury transfers and unforgettable scenic aerial tours.',
+      'Taste Africa and beyond. Certified chefs craft gourmet meals tailored to your cravings — right in your home.',
     contentType: 'component',
     icon: '/icons/HELICOPTER.png',
     spotlightTitle: 'Luxury transfers and scenic aerial tours',
@@ -66,9 +66,9 @@ export const flippedSlides: FlippedSlide[] = [
   },
   {
     id: 2,
-    title: 'Personal Security',
+    title: 'Herbal Spa & Wellness',
     description:
-      'Move with peace of mind. Our trained local escorts ensure you’re protected every step of the way.',
+      'Rebalance body & soul. Traditional massages, herbal therapies, and natural skincare rituals at your doorstep.',
     contentType: 'component',
     icon: '/icons/SECURITY.png',
     spotlightTitle: 'Professional personal protection and security',
@@ -76,9 +76,9 @@ export const flippedSlides: FlippedSlide[] = [
   },
   {
     id: 3,
-    title: 'Herbal Spa & Wellness',
+    title: ' Laundry & Garment Care',
     description:
-      'Recharge with traditional African healing — from herbal massages to natural skincare rituals.',
+      'Stay fresh, effortlessly. Premium laundry with quick pick-up & delivery during your stay.',
     contentType: 'component',
     icon: '/icons/HEBARL CARE.png',
     spotlightTitle: 'Traditional African wellness and healing treatments',
@@ -86,9 +86,9 @@ export const flippedSlides: FlippedSlide[] = [
   },
   {
     id: 4,
-    title: 'Laundry & Garment Care',
+    title: 'Personal Security',
     description:
-      'Fresh looks, zero effort. Premium laundry with quick pick-up and delivery during your stay.',
+      'Peace of mind, always. Trusted local escorts ensure safety wherever you go.',
     contentType: 'component',
     icon: '/icons/LAUNDARY.png',
     spotlightTitle: 'Premium garment care and cleaning services',
@@ -96,9 +96,9 @@ export const flippedSlides: FlippedSlide[] = [
   },
   {
     id: 5,
-    title: 'Continental Chef',
+    title: 'African-Inspired Yoga',
     description:
-      'Dine like royalty. Certified chefs prepare gourmet meals tailored to your taste — right in your home.',
+      'Stretch, breathe, and flow. Guided yoga infused with African rhythms and soul.',
     contentType: 'component',
     icon: '/icons/CHEF.png',
     spotlightTitle: 'Professional culinary services for any occasion',
@@ -106,9 +106,9 @@ export const flippedSlides: FlippedSlide[] = [
   },
   {
     id: 6,
-    title: 'African Yoga',
+    title: ' Helicopter Rides',
     description:
-      'Stretch, breathe, and connect. Experience guided yoga sessions inspired by African rhythms and soul.',
+      'See Africa from the sky. Luxury transfers and breathtaking scenic tours above city and nature.',
     contentType: 'component',
     icon: '/icons/YOGA.png',
     spotlightTitle: 'Personalized yoga and wellness sessions',

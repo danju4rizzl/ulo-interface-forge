@@ -31,11 +31,14 @@ const HowToJoinSection: React.FC = () => {
             <div className="flex justify-between items-center mb-6">
               <div className="flex-1">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Host</h3>
-                <p className="text-lg text-gray-600 mb-4">Lead & Organize</p>
+                <p className="text-lg text-gray-600 mb-4">
+                  Share your home. <br />
+                  Earn from it.
+                </p>
                 <p className="text-gray-700 leading-relaxed">
-                  Take charge of events and gatherings. Create meaningful
-                  experiences for the community while building your leadership
-                  skills and network.
+                  Become a Host on Ulô and open your doors to the world. List
+                  your property, welcome global guests, and earn income while
+                  Ulô handles bookings, payments, and support.
                 </p>
               </div>
               <button
@@ -65,12 +68,12 @@ const HowToJoinSection: React.FC = () => {
               <div className="flex-1">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Guest</h3>
                 <p className="text-lg text-gray-600 mb-4">
-                  Participate & Enjoy
+                  Explore Africa. Stay connected.
                 </p>
                 <p className="text-gray-700 leading-relaxed">
-                  Join events and connect with like-minded individuals. Enjoy
-                  exclusive access to conferences, meetings, and community
-                  activities.
+                  Discover unique homes, authentic stays, and cultural
+                  experiences across Africa. With Ulô, booking is simple,
+                  payments are secure, and every trip feels like home.
                 </p>
               </div>
               <button
@@ -102,12 +105,13 @@ const HowToJoinSection: React.FC = () => {
                   Associate
                 </h3>
                 <p className="text-lg text-gray-600 mb-4">
-                  Support & Collaborate
+                  Represent. Guide. Earn Globally.
                 </p>
                 <p className="text-gray-700 leading-relaxed">
-                  Partner with us in various capacities. Contribute your
-                  expertise and resources while gaining valuable business
-                  connections.
+                  Step into the world of hospitality as an Ulô Certified
+                  Associate. Build global guest connections, represent Ulô
+                  professionally, work remotely, and earn up to $20,000
+                  annually.
                 </p>
               </div>
               <button

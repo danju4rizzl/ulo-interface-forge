@@ -7,28 +7,26 @@ const FeaturesSection: React.FC = () => {
       icon: <img src="/icons/feature-icon4.svg" className="w-8 h-8" />,
       title: 'Hands-Free Management',
       description:
-        'We handle bookings, guest check-ins, cleaning, and support — so you can relax, travel, or focus on what matters most.',
+        'Bookings, check-ins, cleaning & support — all handled for you.',
       bgColor: 'bg-primary'
     },
     {
       icon: <img src="/icons/feature-icon2.svg" className="w-8 h-8" />,
       title: 'Xperience Gallery',
-      description:
-        'See real guest videos. Feel the atmosphere, energy, and stories — before you even book.',
+      description: 'Watch real guest videos and feel the vibe before you book.',
       bgColor: 'bg-primary'
     },
     {
       icon: <img src="/icons/feature-icon3.svg" className="w-8 h-8" />,
       title: 'Local Tour Guides',
-      description:
-        'Connect and explore with trusted Ulô Associates — navigate with ease and feel at home through our Guest Handbook.',
+      description: 'Explore with trusted Ulô Associates & our Guest Handbook.',
       bgColor: 'bg-primary'
     },
     {
       icon: <img src="/icons/feature-icon1.svg" className="w-8 h-8" />,
       title: 'Borderless Payment Enable',
       description:
-        'Pay in your currency, earn in local African currencies — no stress, just seamless transactions across borders.',
+        'Pay globally, earn locally — seamless cross-border transactions.',
       bgColor: 'bg-primary'
     }
   ]

@@ -220,7 +220,7 @@ const AncillaryServicesShowcase: React.FC<AncillaryServicesShowcaseProps> = ({
       <div className="max-w-7xl mx-auto">
         <div className="max-w-20xl   mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-normal text-gray-900 mb-4">
+            <h2 className="text-4xl font-semibold text-gray-900 mb-4">
               Go Beyond the Stay
             </h2>
             <p className="text-lg text-gray-600">
