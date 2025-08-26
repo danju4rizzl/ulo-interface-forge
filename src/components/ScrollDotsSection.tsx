@@ -41,7 +41,7 @@ const ScrollDotsSection: React.FC = () => {
   return (
     <div className="py-20">
       <h2 className="text-4xl  text-primary mb-3 text-center">
-        Connecting <span className="font-semibold">Africa</span> to the World
+        Connecting <span className="font-semibold">World</span> to the Africa
       </h2>
       <div
         ref={scrollDotsRef}

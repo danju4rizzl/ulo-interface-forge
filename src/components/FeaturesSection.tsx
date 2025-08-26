@@ -18,8 +18,9 @@ const FeaturesSection: React.FC = () => {
     },
     {
       icon: <img src="/icons/feature-icon3.svg" className="w-8 h-8" />,
-      title: 'Local Tour Guides',
-      description: 'Explore with trusted Ulô Associates & our Guest Handbook.',
+      title: 'Ulô Associate',
+      description:
+        'Explore confidently with trusted, pre-vetted Associates and our Guest Handbook.',
       bgColor: 'bg-primary'
     },
     {
@@ -36,9 +37,9 @@ const FeaturesSection: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="text-center">
+            <div key={index} className="text-center group cursor-pointer ">
               <div
-                className={`w-[60px] h-[60px] ${feature.bgColor} rounded-full flex items-center justify-center mx-auto mb-4`}
+                className={`w-[60px] h-[60px] ${feature.bgColor} group-hover:bg-[#c68445] rounded-full flex items-center justify-center mx-auto mb-4 transition-colors duration-300 ease-in-out`}
               >
                 {feature.icon}
               </div>

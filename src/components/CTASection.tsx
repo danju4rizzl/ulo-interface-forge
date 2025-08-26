@@ -40,7 +40,7 @@ const CTASection: React.FC = () => {
             <img
               src="/icons/BADGE.png"
               alt="UCAP program logo"
-              className="h-full mb-3"
+              className="h-full mb-3  "
             />
           </div>
 
