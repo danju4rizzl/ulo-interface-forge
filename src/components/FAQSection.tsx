@@ -12,19 +12,19 @@ interface FAQSectionProps {
 
 const defaultFAQs: FAQItem[] = [
   {
-    question: 'How do I get started with Ulo Business Profile?',
+    question: 'What countries can I travel to with Ulô?',
     answer:
-      'Getting started is easy and free. Simply click "Get started" and follow the steps to create your business profile.'
+      'Ulô starts in Nigeria and will grow to four more African countries soon. You can enjoy top cities now, with more choices coming your way.'
   },
   {
     question: 'How long do profile changes take to appear?',
     answer:
-      'Most changes to your Business Profile appear within a few minutes, though some updates may take longer.'
+      'Yes. After training, you’ll earn a global certificate that shows you’re trusted in guest care and culture. It also opens more work chances with Ulô and beyond.'
   },
   {
-    question: 'Is Ulo Business Profile really free?',
+    question: 'Is hosting on Ulô safe for me?',
     answer:
-      'Yes, creating and maintaining your Business Profile on Ulo is completely free.'
+      'Yes. Guests are verified, payments are secure, and our Associates are there to support. You host with ease, we handle the rest.'
   }
 ]
 
@@ -43,32 +43,35 @@ const FAQSection: React.FC<FAQSectionProps> = ({ faqs = defaultFAQs }) => {
   }
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-normal text-gray-900 mb-12 text-center">
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-100 via-gray-200 to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      {/* Background blur gradient accent */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.2),_transparent_50%)]" />
+
+      <div className="relative max-w-4xl mx-auto">
+        <h2 className="text-3xl font-normal text-gray-900 dark:text-white mb-12 text-center drop-shadow-md">
           Your questions, answered
         </h2>
-        <div className="space-y-4">
+        <div className="space-y-6">
           {faqs.map((faq, index) => {
             const isExpanded = expandedIndex === index
             return (
               <div
                 key={index}
-                className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden transition-all duration-200 hover:shadow-md"
+                className="backdrop-blur-xl bg-white/10 dark:bg-white/5 border border-white/20 shadow-xl rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl"
               >
                 <button
-                  className="w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset transition-colors duration-200 hover:bg-gray-50"
+                  className="w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset transition-colors duration-200"
                   onClick={() => toggleFAQ(index)}
                   onKeyDown={(e) => handleKeyDown(e, index)}
                   aria-expanded={isExpanded}
                   aria-controls={`faq-answer-${index}`}
                   type="button"
                 >
-                  <h3 className="text-lg font-medium text-gray-900 pr-4">
+                  <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 pr-4">
                     {faq.question}
                   </h3>
                   <ChevronDown
-                    className={`w-5 h-5 text-gray-500 transition-transform duration-200 flex-shrink-0 ${
+                    className={`w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform duration-300 flex-shrink-0 ${
                       isExpanded ? 'rotate-180' : ''
                     }`}
                     aria-hidden="true"
@@ -76,13 +79,13 @@ const FAQSection: React.FC<FAQSectionProps> = ({ faqs = defaultFAQs }) => {
                 </button>
                 <div
                   id={`faq-answer-${index}`}
-                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  className={`overflow-hidden transition-all duration-500 ease-in-out ${
                     isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                   }`}
                   aria-hidden={!isExpanded}
                 >
                   <div className="px-6 pb-5">
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>
