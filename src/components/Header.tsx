@@ -250,7 +250,7 @@ const Header: React.FC<HeaderProps> = ({ howToJoinSectionRef }) => {
                 onClick={toggleMobileMenu}
                 className={`transition-colors duration-500 ${
                   isInHeroSection
-                    ? 'text-white hover:bg-white/10'
+                    ? 'text-primary hover:bg-white/10'
                     : 'text-black hover:bg-black/10'
                 }`}
               >
@@ -299,7 +299,7 @@ const Header: React.FC<HeaderProps> = ({ howToJoinSectionRef }) => {
                 onClick={toggleMobileMenu}
                 className={`transition-colors duration-500 ${
                   isInHeroSection
-                    ? 'text-white hover:bg-white/10'
+                    ? 'text-primary hover:bg-white/10'
                     : 'text-black hover:bg-black/10'
                 }`}
               >
@@ -309,32 +309,22 @@ const Header: React.FC<HeaderProps> = ({ howToJoinSectionRef }) => {
 
             <nav className="space-y-6">
               <button
-                onClick={() => handleNavClick('services-section')}
-                className={`block text-lg transition-colors text-left w-full ${
-                  isInHeroSection
-                    ? 'text-white/70 hover:text-white'
-                    : 'text-black/70 hover:text-black'
-                }`}
-              >
-                Products
-              </button>
-              <button
                 onClick={() => handleNavClick('business-section')}
-                className={`block text-lg transition-colors text-left w-full ${
-                  isInHeroSection
-                    ? 'text-white/70 hover:text-white'
-                    : 'text-black/70 hover:text-black'
-                }`}
+                className={`block text-lg font-bold transition-colors text-left w-full text-primary hover:text-white `}
               >
                 Solutions
               </button>
+
+              <button
+                onClick={() => handleNavClick('services-section')}
+                className={`block text-lg font-bold transition-colors text-left w-full text-primary hover:text-white `}
+              >
+                Products
+              </button>
+
               <button
                 onClick={() => handleNavClick('how-to-join-section')}
-                className={`block text-lg transition-colors text-left w-full ${
-                  isInHeroSection
-                    ? 'text-white/70 hover:text-white'
-                    : 'text-black/70 hover:text-black'
-                }`}
+                className={`block text-lg font-bold transition-colors text-left w-full text-primary hover:text-white `}
               >
                 Community
               </button>
@@ -342,13 +332,10 @@ const Header: React.FC<HeaderProps> = ({ howToJoinSectionRef }) => {
 
             <div className="mt-8 space-y-4">
               <Button
-                className={`w-full transition-colors duration-500 ${
-                  isInHeroSection
-                    ? 'bg-white text-black hover:bg-white/90'
-                    : 'bg-black text-white hover:bg-black/90'
-                }`}
+                onClick={() => handleNavClick('how-to-join-section')}
+                className={`block text-lg transition-colors text-center w-full text-white  hover:text-white bg-primary  `}
               >
-                Get started
+                Experience Ulô
               </Button>
             </div>
           </div>
