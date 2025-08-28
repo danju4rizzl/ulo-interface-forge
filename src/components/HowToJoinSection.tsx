@@ -1,12 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useImperativeHandle, forwardRef } from 'react'
 import { Button } from '@/components/ui/button'
 import MailerLiteModal from '@/components/mailer-lite/MailerLiteModal'
 
-const HowToJoinSection: React.FC = () => {
+export interface HowToJoinSectionRef {
+  highlightCards: () => void
+}
+
+const HowToJoinSection = forwardRef<HowToJoinSectionRef>((props, ref) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [selectedUserType, setSelectedUserType] = useState<
     'host' | 'guest' | 'associate'
   >('host')
+  const [isHighlighting, setIsHighlighting] = useState(false)
+
+  const hostCardRef = useRef<HTMLDivElement>(null)
+  const guestCardRef = useRef<HTMLDivElement>(null)
+  const associateCardRef = useRef<HTMLDivElement>(null)
 
   const handleUserTypeClick = (userType: 'host' | 'guest' | 'associate') => {
     setSelectedUserType(userType)
@@ -16,6 +25,17 @@ const HowToJoinSection: React.FC = () => {
   const closeModal = () => {
     setIsModalOpen(false)
   }
+
+  const highlightCards = () => {
+    setIsHighlighting(true)
+    setTimeout(() => {
+      setIsHighlighting(false)
+    }, 1000)
+  }
+
+  useImperativeHandle(ref, () => ({
+    highlightCards
+  }))
 
   return (
     <section className="" id="how-to-join-section">
@@ -27,7 +47,14 @@ const HowToJoinSection: React.FC = () => {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Host Column */}
-          <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+          <div
+            ref={hostCardRef}
+            className={`bg-white rounded-lg shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-all duration-300 ${
+              isHighlighting
+                ? 'ring-4 ring-primary/50 shadow-2xl transform scale-105 bg-primary/5'
+                : ''
+            }`}
+          >
             <div className="flex justify-between items-center mb-6">
               <div className="flex-1">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Host</h3>
@@ -63,7 +90,14 @@ const HowToJoinSection: React.FC = () => {
           </div>
 
           {/* Guest Column */}
-          <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+          <div
+            ref={guestCardRef}
+            className={`bg-white rounded-lg shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-all duration-300 ${
+              isHighlighting
+                ? 'ring-4 ring-primary/50 shadow-2xl transform scale-105 bg-primary/5'
+                : ''
+            }`}
+          >
             <div className="flex justify-between items-center  mb-6">
               <div className="flex-1">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Guest</h3>
@@ -98,7 +132,14 @@ const HowToJoinSection: React.FC = () => {
           </div>
 
           {/* Associate Column */}
-          <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+          <div
+            ref={associateCardRef}
+            className={`bg-white rounded-lg shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-all duration-300 ${
+              isHighlighting
+                ? 'ring-4 ring-primary/50 shadow-2xl transform scale-105 bg-primary/5'
+                : ''
+            }`}
+          >
             <div className="flex justify-between items-center mb-6">
               <div className="flex-1">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
@@ -204,6 +245,6 @@ const HowToJoinSection: React.FC = () => {
       />
     </section>
   )
-}
+})
 
 export default HowToJoinSection

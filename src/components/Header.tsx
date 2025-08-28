@@ -5,17 +5,42 @@ import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom'
 import { smoothScrollToSection } from '@/lib/utils'
 
+interface HeaderProps {
+  howToJoinSectionRef?: React.RefObject<{ highlightCards: () => void }>
+}
 
-const Header: React.FC = () => {
+const Header: React.FC<HeaderProps> = ({ howToJoinSectionRef }) => {
   const headerRef = useRef<HTMLElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isInHeroSection, setIsInHeroSection] = useState(true)
 
-  // Navigation handler for smooth scrolling
+  // Check if a section is currently in view
+  const isSectionInView = (sectionId: string) => {
+    const section = document.getElementById(sectionId)
+    if (!section) return false
+
+    const rect = section.getBoundingClientRect()
+    const windowHeight = window.innerHeight
+
+    // Consider section in view if at least 30% of it is visible
+    return rect.top < windowHeight * 0.7 && rect.bottom > windowHeight * 0.3
+  }
+
+  // Enhanced navigation handler with highlight functionality
   const handleNavClick = (sectionId: string) => {
-    smoothScrollToSection(sectionId)
+    // Special handling for how-to-join-section
+    if (sectionId === 'how-to-join-section' && isSectionInView(sectionId)) {
+      // Section is already in view, highlight the cards instead of scrolling
+      if (howToJoinSectionRef?.current) {
+        howToJoinSectionRef.current.highlightCards()
+      }
+    } else {
+      // Normal scroll behavior
+      smoothScrollToSection(sectionId)
+    }
+
     // Close mobile menu if open with animation
     if (isMobileMenuOpen) {
       const menu = mobileMenuRef.current

@@ -1,10 +1,13 @@
+import React, { useRef } from 'react'
 import Header from '@/components/Header'
 import HeroSection from '@/components/HeroSection'
 import VideoShowcaseSection from '@/components/VideoShowcaseSection'
 import VideoContentSection from '@/components/VideoContentSection'
 import FeaturesSection from '@/components/FeaturesSection'
 import BusinessShowcaseSection from '@/components/BusinessShowcaseSection'
-import HowToJoinSection from '@/components/HowToJoinSection'
+import HowToJoinSection, {
+  HowToJoinSectionRef
+} from '@/components/HowToJoinSection'
 import CTASection from '@/components/CTASection'
 import FAQSection from '@/components/FAQSection'
 import Footer from '@/components/Footer'
@@ -14,9 +17,10 @@ import { heroContent, businessSlides, flippedSlides } from '@/data'
 import MusicToggleButton from '@/components/MusicToggleButton'
 
 const Index = () => {
+  const howToJoinSectionRef = useRef<HowToJoinSectionRef>(null)
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      <Header howToJoinSectionRef={howToJoinSectionRef} />
 
       <div className="">
         <HeroSection heroContent={heroContent} />
@@ -110,7 +114,7 @@ const Index = () => {
         />
         <CTASection />
 
-        <HowToJoinSection />
+        <HowToJoinSection ref={howToJoinSectionRef} />
 
         <FAQSection />
 
