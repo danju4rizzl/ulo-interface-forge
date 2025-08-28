@@ -198,7 +198,7 @@ const Header: React.FC<HeaderProps> = ({ howToJoinSectionRef }) => {
                       ? 'text-white hover:text-white/70 hover:bg-white/10'
                       : 'text-black hover:text-black/70 hover:bg-black/10'
                   }`}
-                  onClick={() => handleNavClick('community-section')}
+                  onClick={() => handleNavClick('how-to-join-section')}
                 >
                   Community
                 </Button>
@@ -329,7 +329,7 @@ const Header: React.FC<HeaderProps> = ({ howToJoinSectionRef }) => {
                 Solutions
               </button>
               <button
-                onClick={() => handleNavClick('community-section')}
+                onClick={() => handleNavClick('how-to-join-section')}
                 className={`block text-lg transition-colors text-left w-full ${
                   isInHeroSection
                     ? 'text-white/70 hover:text-white'

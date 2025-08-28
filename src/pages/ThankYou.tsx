@@ -1,34 +1,24 @@
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Users, CheckCircle } from "lucide-react";
+import { Users, ExternalLinkIcon } from 'lucide-react'
 
 const ThankYou = () => {
   const handleSlackJoin = () => {
     // Replace with your actual Slack invite link
-    window.open("https://join.slack.com/t/ulo-community/shared_invite/zt-xxxxx", "_blank");
-  };
+    window.open(
+      'https://join.slack.com/t/ulo-community/shared_invite/zt-xxxxx',
+      '_blank'
+    )
+  }
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="max-w-md w-full text-center space-y-8">
-        {/* Success Icon */}
-        <div className="flex justify-center">
-          <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center">
-            <CheckCircle className="w-10 h-10 text-green-500" />
-          </div>
-        </div>
-
-        {/* Logo */}
-        <div className="flex justify-center">
-          <img src="/ulo-logo.png" alt="Ulo" className="h-16" />
-        </div>
-
         {/* Thank You Message */}
         <div className="space-y-4">
-          <h1 className="text-3xl font-bold text-foreground">
-            Welcome to the Ulo Community!
-          </h1>
+          <h1 className="text-7xl font-bold text-foreground">Thank You!</h1>
           <p className="text-lg text-muted-foreground">
-            Thank you for joining us. We're excited to have you on this journey of connecting the world to Africa.
+            Together, we are opening new doors for the world to experience
+            Africa with pride, culture, and belonging.
           </p>
         </div>
 
@@ -38,33 +28,38 @@ const ThankYou = () => {
             <Users className="w-5 h-5" />
             What's Next?
           </h2>
-          <div className="space-y-3 text-muted-foreground">
-            <div className="flex items-start gap-3">
-              <div className="w-2 h-2 bg-muted-foreground rounded-full mt-2 flex-shrink-0"></div>
-              <p className="text-sm">Connect with fellow travelers and local guides</p>
-            </div>
-            <div className="flex items-start gap-3">
-              <div className="w-2 h-2 bg-muted-foreground rounded-full mt-2 flex-shrink-0"></div>
-              <p className="text-sm">Get exclusive travel tips and insights</p>
-            </div>
-            <div className="flex items-start gap-3">
-              <div className="w-2 h-2 bg-muted-foreground rounded-full mt-2 flex-shrink-0"></div>
-              <p className="text-sm">Access early updates on new destinations</p>
-            </div>
-          </div>
+          <p className="text-md text-muted-foreground">
+            Join our private community to be the first to know when Ulô
+            launches, gain insider access to our Demo Launch and Ulô Festival,
+            and play a part in shaping how Africa is shared with the world.
+          </p>
+
+          <a
+            href="https://whatsapp.com/channel/0029Vb6VwpCAzNbvdjovPd1o"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block"
+          >
+            <Button className="bg-white hover:bg-primary text-gray-800 hover:text-white px-10 py-6 rounded-md border border-gray-200 shadow-sm flex items-center gap-3 font-medium text-lg">
+              <div className="max-w-sm w-7 mb-1">
+                <img src="/icons/whatsapp-3.svg" alt="" />
+              </div>
+              Join us on WhatsApp <ExternalLinkIcon />
+            </Button>
+          </a>
         </div>
 
         {/* Slack Integration Button */}
         <div className="space-y-4">
-          <Button 
+          {/* <Button
             onClick={handleSlackJoin}
             className="w-full font-semibold py-3"
             size="lg"
           >
             Join Our Slack Community
             <ExternalLink className="w-4 h-4 ml-2" />
-          </Button>
-          
+          </Button> */}
+
           <p className="text-sm text-muted-foreground">
             Connect with other community members and get real-time updates
           </p>
@@ -72,16 +67,16 @@ const ThankYou = () => {
 
         {/* Back to Home */}
         <div className="pt-4">
-          <Button 
-            variant="outline" 
-            onClick={() => window.location.href = "/"}
+          <Button
+            variant="outline"
+            onClick={() => (window.location.href = '/')}
           >
             Back to Home
           </Button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default ThankYou;
