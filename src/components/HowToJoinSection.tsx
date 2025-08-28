@@ -18,7 +18,7 @@ const HowToJoinSection: React.FC = () => {
   }
 
   return (
-    <section className="" id="">
+    <section className="" id="how-to-join-section">
       {/* User selection section */}
 
       <div className="max-w-6xl mx-auto mb-5">

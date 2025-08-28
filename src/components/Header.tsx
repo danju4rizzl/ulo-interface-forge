@@ -183,11 +183,12 @@ const Header: React.FC = () => {
                   variant="outline"
                   className={`text-sm px-6 border-none transition-all duration-500 ease-in-out ${
                     isInHeroSection
-                      ? 'bg-white text-black hover:bg-white/90'
-                      : 'bg-primary text-white hover:bg-primary/90'
+                      ? 'bg-white text-black hover:bg-white/90 hover:text-black'
+                      : 'bg-primary text-white hover:bg-primary/90 hover:text-white'
                   }`}
+                  onClick={() => handleNavClick('how-to-join-section')}
                 >
-                  Become a host
+                  Experience Ulô
                 </Button>
               </div>
             </div>
