@@ -43,9 +43,8 @@ const FAQSection: React.FC<FAQSectionProps> = ({ faqs = defaultFAQs }) => {
   }
 
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-100 via-gray-200 to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-[#f9fafb] ">
       {/* Background blur gradient accent */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.2),_transparent_50%)]" />
 
       <div className="relative max-w-4xl mx-auto">
         <h2 className="text-3xl font-normal text-gray-900 dark:text-white mb-12 text-center drop-shadow-md">
@@ -60,7 +59,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({ faqs = defaultFAQs }) => {
                 className="backdrop-blur-xl bg-white/10 dark:bg-white/5 border border-white/20 shadow-xl rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl"
               >
                 <button
-                  className="w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset transition-colors duration-200"
+                  className="w-full px-6 py-5 text-left flex items-center justify-between  transition-colors duration-200"
                   onClick={() => toggleFAQ(index)}
                   onKeyDown={(e) => handleKeyDown(e, index)}
                   aria-expanded={isExpanded}
@@ -85,7 +84,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({ faqs = defaultFAQs }) => {
                   aria-hidden={!isExpanded}
                 >
                   <div className="px-6 pb-5">
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed ">
                       {faq.answer}
                     </p>
                   </div>
