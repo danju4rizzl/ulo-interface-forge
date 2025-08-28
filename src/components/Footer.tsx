@@ -40,16 +40,14 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-white border-t border-gray-200 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-5 gap-8">
-          <div className="grid">
-            <img src="/ulo-logo.png" alt="Ulo" className="h-20" />
-
-            <p className="text-sm text-gray-600">
-              Ulo is an Effortless stays, with trusted local guides, and
-              multi-currency payments.
+        <div className="grid  justify-center">
+          <div className="">
+            <img src="/ulo-logo.png" alt="Ulo" className="h-20 mx-auto" />
+            <p className="text-sm text-center  text-gray-600 max-w-[250px] capitalize">
+              Connecting the world to africa
             </p>
           </div>
-          {footerSections.map((section, index) => (
+          {/* {footerSections.map((section, index) => (
             <div key={index}>
               <h4 className="font-medium text-gray-900 mb-4">
                 {section.title}
@@ -64,9 +62,9 @@ const Footer: React.FC = () => {
                 ))}
               </ul>
             </div>
-          ))}
+          ))} */}
         </div>
-        <div className="border-t border-gray-200 mt-8 pt-8 text-sm text-gray-600">
+        <div className=" flex justify-center border-t border-gray-200 mt-8 pt-8 text-sm text-gray-600">
           <p>&copy; {new Date().getFullYear()} Ulo LLC. All rights reserved.</p>
         </div>
       </div>
